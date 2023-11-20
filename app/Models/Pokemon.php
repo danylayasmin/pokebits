@@ -24,4 +24,30 @@ class Pokemon extends Model
         'weight',
         'height',
     ];
+
+    // relationships
+    public function abilities()
+    {
+        return $this->belongsToMany(Ability::class);
+    }
+
+    public function types()
+    {
+        return $this->belongsToMany(Type::class);
+    }
+
+    public function species()
+    {
+        return $this->hasOne(Species::class);
+    }
+
+    public function encounters()
+    {
+        return $this->belongsToMany(Encounter_Area::class);
+    }
+
+    public function evolution_chain()
+    {
+        return $this->hasOne(Evolution_Chain::class);
+    }
 }

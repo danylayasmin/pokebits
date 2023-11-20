@@ -18,4 +18,9 @@ class Type extends Model
         'no_damage_from',
         'no_damage_to',
     ];
+
+    public function pokemons()
+    {
+        return $this->belongsToMany(Pokemon::class);
+    }
 }
