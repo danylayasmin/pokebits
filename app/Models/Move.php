@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Move extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'accuracy',
@@ -16,6 +13,6 @@ class Move extends Model
         'pp',
         'priority',
         'power',
-        'type',
+        'type'
     ];
 }
