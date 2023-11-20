@@ -18,5 +18,7 @@ class Pokemon extends Model
         'stat_special_attack',
         'stat_special_defense',
         'stat_speed',
+        'height',
+        'weight'
     ];
 }

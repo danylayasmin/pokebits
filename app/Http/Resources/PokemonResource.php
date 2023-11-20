@@ -23,6 +23,8 @@ class PokemonResource extends JsonResource
             'stat_special_attack' => $this->stat_special_attack,
             'stat_special_defense' => $this->stat_special_defense,
             'stat_speed' => $this->stat_speed,
+            'height' => $this->height,
+            'weight' => $this->weight,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

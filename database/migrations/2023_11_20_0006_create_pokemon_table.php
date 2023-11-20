@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->integer('stat_special_attack');
             $table->integer('stat_special_defense');
             $table->integer('stat_speed');
+            $table->integer('height');
+            $table->integer('weight');
             $table->timestamps();
         });
     }
