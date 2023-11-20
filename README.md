@@ -30,6 +30,24 @@ If you're looking for our API Reference check out [our OpenAPI Spec](#todo)
 -   PHP 8.2+
 -   Composer
 -   MySQL
+<details>
+<summary>PHP Extensions</summary>
+
+-   PHP-GD _or_ PHP-Imagick
+-   Ctype PHP Extension
+-   cURL PHP Extension
+-   DOM PHP Extension
+-   Fileinfo PHP Extension
+-   Filter PHP Extension
+-   Hash PHP Extension
+-   Mbstring PHP Extension
+-   OpenSSL PHP Extension
+-   PCRE PHP Extension
+-   PDO PHP Extension
+-   Session PHP Extension
+-   Tokenizer PHP Extension
+-   XML PHP Extension
+</details>
 
 ---
 
