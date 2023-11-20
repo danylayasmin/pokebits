@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Type extends Model
 {
@@ -24,4 +25,9 @@ class Type extends Model
         'no_damage_from' => 'array',
         'no_damage_to' => 'array',
     ];
+
+    public function pokemon(): HasMany
+    {
+        return $this->hasMany(PokemonType::class, 'type', 'name');
+    }
 }

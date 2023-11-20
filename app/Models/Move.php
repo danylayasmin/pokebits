@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Move extends Model
 {
@@ -15,4 +16,9 @@ class Move extends Model
         'power',
         'type'
     ];
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

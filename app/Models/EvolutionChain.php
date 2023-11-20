@@ -14,4 +14,9 @@ class EvolutionChain extends Model
     protected $casts = [
         'evolution_chain' => 'array',
     ];
+
+    public function pokemon()
+    {
+        return $this->belongsTo(Pokemon::class, 'pokemon_id', 'pokemon_id');
+    }
 }
