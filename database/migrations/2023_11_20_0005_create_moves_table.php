@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->integer('power')->nullable();
             $table->string('type');
             $table->timestamps();
+
+            $table->foreign('type')->references('name')->on('types');
         });
     }
 

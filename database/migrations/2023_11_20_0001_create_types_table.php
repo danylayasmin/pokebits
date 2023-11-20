@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->json('double_damage_from')->nullable();
             $table->json('double_damage_to')->nullable();
             $table->json('half_damage_from')->nullable();
