@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Encounter_Area extends Model
+class EncounterAreas extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'area_id',
         'area_name',
@@ -16,9 +13,4 @@ class Encounter_Area extends Model
         'method',
         'chance',
     ];
-
-    public function pokemons()
-    {
-        return $this->belongsToMany(Pokemon::class);
-    }
 }
