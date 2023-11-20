@@ -5,12 +5,12 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up()
+    public function up(): void
     {
         Schema::create('pokemon', function (Blueprint $table) {
             $table->id();
-            $table->integer('pokemon_id');
-            $table->string('name');
+            $table->integer('pokemon_id')->unique();
+            $table->string('name')->unique();
             $table->string('sprite_front');
             $table->string('sprite_back');
             $table->string('artwork');
@@ -24,7 +24,7 @@ return new class extends Migration {
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('pokemon');
     }
