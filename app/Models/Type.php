@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
 {
-    use HasFactory;
-    
     protected $fillable = [
         'name',
         'double_damage_from',
@@ -19,8 +16,12 @@ class Type extends Model
         'no_damage_to',
     ];
 
-    public function pokemons()
-    {
-        return $this->belongsToMany(Pokemon::class);
-    }
+    protected $casts = [
+        'double_damage_from' => 'array',
+        'double_damage_to' => 'array',
+        'half_damage_from' => 'array',
+        'half_damage_to' => 'array',
+        'no_damage_from' => 'array',
+        'no_damage_to' => 'array',
+    ];
 }
