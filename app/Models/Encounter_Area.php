@@ -16,4 +16,9 @@ class Encounter_Area extends Model
         'method',
         'chance',
     ];
+
+    public function pokemons()
+    {
+        return $this->belongsToMany(Pokemon::class);
+    }
 }

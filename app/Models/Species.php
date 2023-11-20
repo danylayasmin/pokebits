@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Species extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'pokemon_name',
         'description',
@@ -24,4 +24,9 @@ class Species extends Model
         'is_legendary',
         'is_mythical',
     ];
+
+    public function pokemon()
+    {
+        return $this->belongsTo(Pokemon::class);
+    }
 }
