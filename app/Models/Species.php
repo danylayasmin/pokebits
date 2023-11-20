@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Species extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'pokemon_name',
         'description',
@@ -25,8 +22,7 @@ class Species extends Model
         'is_mythical',
     ];
 
-    public function pokemon()
-    {
-        return $this->belongsTo(Pokemon::class);
-    }
+    protected $casts = [
+        'types' => 'array',
+    ];
 }
