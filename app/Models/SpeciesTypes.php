@@ -12,12 +12,12 @@ class SpeciesTypes extends Model
         'type_id',
     ];
 
-    public function species(): BelongsTo
+    public function species_id(): BelongsTo
     {
         return $this->belongsTo(Species::class, 'species_id', 'id');
     }
 
-    public function type(): BelongsTo
+    public function type_id(): BelongsTo
     {
         return $this->belongsTo(Type::class, 'type_id', 'id');
     }
