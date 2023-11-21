@@ -21,11 +21,11 @@ class PokeapiHabitatsCommand extends Command
     /**
      * @throws GuzzleException
      */
-    public function handle()
+    public function handle(): void
     {
         $client = new Client([
             'base_uri' => 'https://pokeapi.co/api/v2/',
-            'timeout' => 2.0,
+            'timeout' => 3.0,
         ]);
         $response = $client->request('GET', 'pokemon-habitat');
 
@@ -44,5 +44,7 @@ class PokeapiHabitatsCommand extends Command
                 'name' => $habitatData['name'],
             ]);
         }
+
+        $this->info('Finished fetching Habitats from PokeAPI.');
     }
 }
