@@ -11,7 +11,7 @@ class PokeapiMovesCommand extends Command
 {
     protected $signature = 'pokeapi:moves';
 
-    protected $description = 'Command description';
+    protected $description = 'Fetch Moves data from PokeAPI and store it in the database.';
 
     /**
      * @throws GuzzleException

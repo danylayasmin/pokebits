@@ -13,11 +13,11 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->string('color_name');
             $table->string('color_hex');
-            $table->string('shape');
-            $table->integer('base_happiness');
-            $table->integer('capture_rate');
-            $table->string('habitat');
-            $table->integer('growth_rate');
+            $table->string('shape')->nullable();
+            $table->integer('base_happiness')->nullable();
+            $table->integer('capture_rate')->nullable();
+            $table->string('habitat')->nullable();
+            $table->integer('growth_rate')->nullable();
             $table->boolean('is_baby');
             $table->boolean('is_legendary');
             $table->boolean('is_mythical');
