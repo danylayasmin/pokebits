@@ -133,7 +133,21 @@ _Please note that slight changes might occur during development._
 ![Pokebit diagram](pokebits_diagram.png)
 
 ## 📅 **Planning:**  
-Work in progress, will be added to this document later.
+- **Day 1:**
+  - Finish documentation
+  - Make database planning
+- **Day 2:**
+  - Make user stories
+  - Data in database
+  - Improve documentation
+- **Day 3:**
+  - Start with the API
+- **Day 4:**
+  - Finish API
+  - Test API
+- **Day 5:**
+  - Finishing touches
+  - Prepare for presentation
 
 ## 🖼️ **Wireframe:**  
 As a backend-centric project, wireframing is not applicable in this context, focusing solely on API and database design.
