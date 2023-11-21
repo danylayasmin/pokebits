@@ -14,7 +14,7 @@ class Move extends Model
         'pp',
         'priority',
         'power',
-        'type'
+        'type',
     ];
 
     public function type(): BelongsTo
