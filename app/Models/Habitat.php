@@ -8,7 +8,5 @@ class Habitat extends Model
 {
     protected $fillable = [
         'name',
-        'effect',
-        'description',
     ];
 }

@@ -17,8 +17,6 @@ class HabitatController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'effect' => ['nullable'],
-            'description' => ['nullable'],
         ]);
 
         return new HabitatResource(Habitat::create($request->validated()));
@@ -33,8 +31,6 @@ class HabitatController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'effect' => ['nullable'],
-            'description' => ['nullable'],
         ]);
 
         $habitat->update($request->validated());
