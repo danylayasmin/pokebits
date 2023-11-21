@@ -45,3 +45,12 @@ Route::middleware(['throttle:pokemon'])->group(function () {
         [PokemonController::class, 'destroy']
     )->name('pokemon.destroy');
 });
+
+// Species routes
+// Evolution chain routes
+// Encounter areas routes
+// Items routes
+// Moves routes
+// Abilities routes
+// Habitats routes
+// Types routes
