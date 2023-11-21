@@ -34,9 +34,4 @@ class Species extends Model
     {
         return $this->belongsTo(Pokemon::class, 'pokemon_name', 'name');
     }
-
-    public function species_type(): HasMany
-    {
-        return $this->hasMany(SpeciesType::class, 'species_id', 'id');
-    }
 }

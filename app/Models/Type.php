@@ -25,9 +25,4 @@ class Type extends Model
         'no_damage_from' => 'array',
         'no_damage_to' => 'array',
     ];
-
-    public function pokemon_type(): HasMany
-    {
-        return $this->hasMany(PokemonType::class, 'type', 'name');
-    }
 }
