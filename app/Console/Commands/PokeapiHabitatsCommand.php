@@ -44,6 +44,9 @@ class PokeapiHabitatsCommand extends Command
             $habitatData = json_decode($response->getBody()->getContents(), true);
             Habitat::updateOrCreate([
                 'name' => $habitatData['name'],
+            ],
+                [
+                'name' => $habitatData['name'],
             ]);
 
             $progressbar->advance();
@@ -52,6 +55,6 @@ class PokeapiHabitatsCommand extends Command
 
         $progressbar->finish();
 
-        $this->info('Finished fetching Habitats from PokeAPI.');
+        $this->info(PHP_EOL . 'Finished fetching Habitats from PokeAPI.');
     }
 }

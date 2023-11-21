@@ -39,7 +39,9 @@ class PokeapiSpeciesCommand extends Command
             $speciesData = json_decode($speciesResult->getBody()->getContents(), true);
             $pokemonUrl = $client->request('GET', $speciesData['varieties'][0]['pokemon']['url']);
             $pokemonData = json_decode($pokemonUrl->getBody()->getContents(), true);
-            $averageColor = getAverageColorFromImageUrl($pokemonData['sprites']['front_default'] ?? $pokemonData['sprites']['other']['official-artwork']['front_default']);
+            $averageColor = getAverageColorFromImageUrl(
+                $pokemonData['sprites']['front_default'] ?? $pokemonData['sprites']['other']['official-artwork']['front_default']
+            );
             $filteredEntries = array_filter($speciesData['flavor_text_entries'], function ($entry) {
                 return $entry['language']['name'] === 'en';
             });
@@ -47,23 +49,24 @@ class PokeapiSpeciesCommand extends Command
             $lastFlavorText = $lastFlavorTextEntry ? $lastFlavorTextEntry['flavor_text'] : null;
 
 
-
-            foreach($speciesData['varieties'] as $variety)
-            {
-                Species::updateOrCreate([
-                    'pokemon_name' => $variety['pokemon']['name'],
-                    'description' => $lastFlavorText,
-                    'color_name' => $speciesData['color']['name'],
-                    'color_hex' => $averageColor,
-                    'shape' => $speciesData['shape']['name'] ?? null,
-                    'base_happiness' => $speciesData['base_happiness'],
-                    'capture_rate' => $speciesData['capture_rate'] ?? null,
-                    'habitat' => $speciesData['habitat']['name'] ?? null,
-                    'growth_rate' => $speciesData['growth_rate']['name'] ?? null,
-                    'is_baby' => $speciesData['is_baby'],
-                    'is_legendary' => $speciesData['is_legendary'],
-                    'is_mythical' => $speciesData['is_mythical'],
-                ]);
+            foreach ($speciesData['varieties'] as $variety) {
+                Species::updateOrCreate(
+                    ['pokemon_name' => $variety['pokemon']['name']],
+                    [
+                        'pokemon_name' => $variety['pokemon']['name'],
+                        'description' => $lastFlavorText,
+                        'color_name' => $speciesData['color']['name'],
+                        'color_hex' => $averageColor,
+                        'shape' => $speciesData['shape']['name'] ?? null,
+                        'base_happiness' => $speciesData['base_happiness'],
+                        'capture_rate' => $speciesData['capture_rate'] ?? null,
+                        'habitat' => $speciesData['habitat']['name'] ?? null,
+                        'growth_rate' => $speciesData['growth_rate']['name'] ?? null,
+                        'is_baby' => $speciesData['is_baby'],
+                        'is_legendary' => $speciesData['is_legendary'],
+                        'is_mythical' => $speciesData['is_mythical'],
+                    ]
+                );
             }
 
             $progressbar->advance();
@@ -71,6 +74,6 @@ class PokeapiSpeciesCommand extends Command
         }
 
         $progressbar->finish();
-        $this->info('Finished fetching Species from PokeAPI.');
+        $this->info(PHP_EOL . 'Finished fetching Species from PokeAPI.');
     }
 }

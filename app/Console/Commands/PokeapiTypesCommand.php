@@ -37,15 +37,28 @@ class PokeapiTypesCommand extends Command
         foreach ($data['results'] as $typeResults) {
             $response = $client->request('GET', $typeResults['url']);
             $typeData = json_decode($response->getBody()->getContents(), true);
-            Type::updateOrCreate([
-                'name' => $typeData['name'],
-                'double_damage_from' => collect($typeData['damage_relations']['double_damage_from'])->pluck('name')->toArray(),
-                'double_damage_to' => collect($typeData['damage_relations']['double_damage_to'])->pluck('name')->toArray(),
-                'half_damage_from' => collect($typeData['damage_relations']['half_damage_from'])->pluck('name')->toArray(),
-                'half_damage_to' => collect($typeData['damage_relations']['half_damage_to'])->pluck('name')->toArray(),
-                'no_damage_from' => collect($typeData['damage_relations']['no_damage_from'])->pluck('name')->toArray(),
-                'no_damage_to' => collect($typeData['damage_relations']['no_damage_to'])->pluck('name')->toArray(),
-            ]);
+            Type::updateOrCreate(
+                ['name' => $typeData['name'],],
+                [
+                    'name' => $typeData['name'],
+                    'double_damage_from' => collect($typeData['damage_relations']['double_damage_from'])->pluck(
+                        'name'
+                    )->toArray(),
+                    'double_damage_to' => collect($typeData['damage_relations']['double_damage_to'])->pluck(
+                        'name'
+                    )->toArray(),
+                    'half_damage_from' => collect($typeData['damage_relations']['half_damage_from'])->pluck(
+                        'name'
+                    )->toArray(),
+                    'half_damage_to' => collect($typeData['damage_relations']['half_damage_to'])->pluck(
+                        'name'
+                    )->toArray(),
+                    'no_damage_from' => collect($typeData['damage_relations']['no_damage_from'])->pluck(
+                        'name'
+                    )->toArray(),
+                    'no_damage_to' => collect($typeData['damage_relations']['no_damage_to'])->pluck('name')->toArray(),
+                ]
+            );
 
             $progressbar->advance();
             sleep(0.10);
@@ -53,6 +66,6 @@ class PokeapiTypesCommand extends Command
 
         $progressbar->finish();
 
-        $this->info('Finished fetching Types from PokeAPI.');
+        $this->info(PHP_EOL . 'Finished fetching Types from PokeAPI.');
     }
 }

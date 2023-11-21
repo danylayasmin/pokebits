@@ -31,26 +31,32 @@ class PokeapiAbilitiesCommand extends Command
 
         $data = json_decode($response->getBody()->getContents(), true);
 
-        foreach ($data['results'] as $abilityResults) {
+        $progressbar = $this->output->createProgressBar($data['count']);
+        $progressbar->start();
 
-            $this->info('Fetching data for ' . $abilityResults['name'] . '...');
+        foreach ($data['results'] as $abilityResults) {
             $response = $client->request('GET', $abilityResults['url']);
             $typeData = json_decode($response->getBody()->getContents(), true);
 
             $filteredEffects = array_filter($typeData['effect_entries'], function ($effect) {
                 return $effect['language']['name'] === 'en';
             });
-
             $desiredEffect = isset($filteredEffects[1]) ? $filteredEffects[1]['effect'] :
                 ($filteredEffects[0]['effect'] ?? null);
 
+            Ability::updateOrCreate(
+                ['name' => $typeData['name']],
+                [
+                    'name' => $typeData['name'],
+                    'effect' => $desiredEffect,
+                ]
+            );
 
-            Ability::updateOrCreate([
-                'name' => $typeData['name'],
-                'effect' => $desiredEffect,
-        ]);
+            $progressbar->advance();
+            sleep(0.025);
         }
 
-        $this->info('Finished fetching Abilities from PokeAPI.');
+        $progressbar->finish();
+        $this->info(PHP_EOL . 'Finished fetching Abilities from PokeAPI.');
     }
 }

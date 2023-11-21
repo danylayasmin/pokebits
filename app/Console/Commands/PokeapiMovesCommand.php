@@ -38,21 +38,24 @@ class PokeapiMovesCommand extends Command
             $moveResult = $client->request('GET', $moveResults['url']);
             $moveData = json_decode($moveResult->getBody()->getContents(), true);
 
-            Move::updateOrCreate([
-                'name' => $moveData['name'],
-                'accuracy' => $moveData['accuracy'],
-                'effect_chance' => $moveData['effect_chance'],
-                'pp' => $moveData['pp'],
-                'priority' => $moveData['priority'],
-                'power' => $moveData['power'],
-                'type' => $moveData['type']['name'],
-            ]);
+            Move::updateOrCreate(
+                ['name' => $moveData['name']],
+                [
+                    'name' => $moveData['name'],
+                    'accuracy' => $moveData['accuracy'],
+                    'effect_chance' => $moveData['effect_chance'],
+                    'pp' => $moveData['pp'],
+                    'priority' => $moveData['priority'],
+                    'power' => $moveData['power'],
+                    'type' => $moveData['type']['name'],
+                ]
+            );
 
             $progressbar->advance();
             sleep(0.10);
         }
 
         $progressbar->finish();
-        $this->info('Finished fetching Moves from PokeAPI.');
+        $this->info(PHP_EOL . 'Finished fetching Moves from PokeAPI.');
     }
 }

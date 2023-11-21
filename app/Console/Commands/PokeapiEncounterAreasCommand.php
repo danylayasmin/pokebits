@@ -34,15 +34,21 @@ class PokeapiEncounterAreasCommand extends Command
             $encounterArea = $client->request('GET', $encounterAreasRes['url']);
             $encounterAreaData = json_decode($encounterArea->getBody()->getContents(), true);
 
-            foreach ($encounterAreaData['pokemon_encounters'] as $encounter)
-            {
-                EncounterAreas::updateOrCreate([
-                    'area_id' => $encounterAreaData['id'],
-                    'area_name' => $encounterAreaData['name'],
-                    'pokemon_name' => $encounter['pokemon']['name'],
-                    'method' => $encounterAreaData['encounter_method_rates'][0]['encounter_method']['name'] ?? null,
-                    'chance' => $encounterAreaData['encounter_method_rates'][0]['version_details'][0]['rate'] ?? null,
-                ]);
+            foreach ($encounterAreaData['pokemon_encounters'] as $encounter) {
+                EncounterAreas::updateOrCreate(
+                    [
+                        'area_id' => $encounterAreaData['id'],
+                        'pokemon_name' => $encounter['pokemon']['name'],
+                        'chance' => $encounterAreaData['encounter_method_rates'][0]['version_details'][0]['rate'] ?? null
+                    ],
+                    [
+                        'area_id' => $encounterAreaData['id'],
+                        'area_name' => $encounterAreaData['name'],
+                        'pokemon_name' => $encounter['pokemon']['name'],
+                        'method' => $encounterAreaData['encounter_method_rates'][0]['encounter_method']['name'] ?? null,
+                        'chance' => $encounterAreaData['encounter_method_rates'][0]['version_details'][0]['rate'] ?? null,
+                    ]
+                );
             }
 
             $progressbar->advance();
@@ -50,6 +56,6 @@ class PokeapiEncounterAreasCommand extends Command
         }
 
         $progressbar->finish();
-        $this->info('Finished fetching Encounter Areas from PokeAPI.');
+        $this->info(PHP_EOL . 'Finished fetching Encounter Areas from PokeAPI.');
     }
 }

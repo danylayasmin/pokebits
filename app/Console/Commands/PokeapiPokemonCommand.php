@@ -38,26 +38,29 @@ class PokeapiPokemonCommand extends Command
             $pokemonResult = $client->request('GET', $pokemonResults['url']);
             $pokemonData = json_decode($pokemonResult->getBody()->getContents(), true);
 
-            Pokemon::updateOrCreate([
-                'name' => $pokemonData['name'],
-                'pokemon_id' => $pokemonData['id'],
-                'sprite_front' => $pokemonData['sprites']['front_default'],
-                'sprite_back' => $pokemonData['sprites']['back_default'],
-                'artwork' => $pokemonData['sprites']['other']['official-artwork']['front_default'],
-                'stat_hp' => $pokemonData['stats'][0]['base_stat'],
-                'stat_attack' => $pokemonData['stats'][1]['base_stat'],
-                'stat_defense' => $pokemonData['stats'][2]['base_stat'],
-                'stat_special_attack' => $pokemonData['stats'][3]['base_stat'],
-                'stat_special_defense' => $pokemonData['stats'][4]['base_stat'],
-                'stat_speed' => $pokemonData['stats'][5]['base_stat'],
-                'height' => $pokemonData['height'],
-                'weight' => $pokemonData['weight']
-            ]);
+            Pokemon::updateOrCreate(
+                ['name' => $pokemonData['name']],
+                [
+                    'name' => $pokemonData['name'],
+                    'pokemon_id' => $pokemonData['id'],
+                    'sprite_front' => $pokemonData['sprites']['front_default'],
+                    'sprite_back' => $pokemonData['sprites']['back_default'],
+                    'artwork' => $pokemonData['sprites']['other']['official-artwork']['front_default'],
+                    'stat_hp' => $pokemonData['stats'][0]['base_stat'],
+                    'stat_attack' => $pokemonData['stats'][1]['base_stat'],
+                    'stat_defense' => $pokemonData['stats'][2]['base_stat'],
+                    'stat_special_attack' => $pokemonData['stats'][3]['base_stat'],
+                    'stat_special_defense' => $pokemonData['stats'][4]['base_stat'],
+                    'stat_speed' => $pokemonData['stats'][5]['base_stat'],
+                    'height' => $pokemonData['height'],
+                    'weight' => $pokemonData['weight']
+                ]
+            );
             $progressbar->advance();
             sleep(0.10);
         }
 
         $progressbar->finish();
-        $this->info('Finished fetching Types from PokeAPI.');
+        $this->info(PHP_EOL . 'Finished fetching all Pokemon from PokeAPI.');
     }
 }

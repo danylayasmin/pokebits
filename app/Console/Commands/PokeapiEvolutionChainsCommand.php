@@ -48,16 +48,19 @@ class PokeapiEvolutionChainsCommand extends Command
                     $evoChainArray[] = $evolutionChainData['chain']['evolves_to'][0]['evolves_to'][0]['species']['name'];
                 }
             }
-                EvolutionChain::updateOrCreate([
+            EvolutionChain::updateOrCreate(
+                ['pokemon_id' => $pokemon->pokemon_id],
+                [
                     'pokemon_id' => $pokemon->pokemon_id,
                     'evolution_chain' => $evoChainArray,
-                ]);
+                ]
+            );
 
             $progressbar->advance();
             sleep(0.025);
         }
 
         $progressbar->finish();
-        $this->info('Finished fetching Encounter Areas from PokeAPI.');
+        $this->info(PHP_EOL . 'Finished fetching Evolution Chains from PokeAPI.');
     }
 }
