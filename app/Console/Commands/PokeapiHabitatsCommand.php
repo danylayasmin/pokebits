@@ -6,9 +6,13 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
 use App\Models\Habitat;
+use App\Traits\HandlesPokeAPIResponse;
+
 
 class PokeapiHabitatsCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:habitats';
 
     protected $description = 'Fetch Habitat data from PokeAPI and store it in the database.';
@@ -29,8 +33,7 @@ class PokeapiHabitatsCommand extends Command
         ]);
         $response = $client->request('GET', 'pokemon-habitat');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 

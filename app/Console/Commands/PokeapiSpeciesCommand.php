@@ -6,9 +6,12 @@ use App\Models\Species;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Console\Command;
+use App\Traits\HandlesPokeAPIResponse;
 
 class PokeapiSpeciesCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:species';
 
     protected $description = 'Fetch Species data from PokeAPI and store it in the database.';
@@ -24,8 +27,7 @@ class PokeapiSpeciesCommand extends Command
         ]);
         $response = $client->request('GET', 'pokemon-species?limit=1500');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 

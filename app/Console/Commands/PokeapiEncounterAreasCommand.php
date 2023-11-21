@@ -5,9 +5,12 @@ namespace App\Console\Commands;
 use App\Models\EncounterAreas;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use App\Traits\HandlesPokeAPIResponse;
 
 class PokeapiEncounterAreasCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:encounter-areas';
 
     protected $description = 'Fetch Encounter Areas data from PokeAPI and store it in the database.';
@@ -20,8 +23,7 @@ class PokeapiEncounterAreasCommand extends Command
         ]);
         $response = $client->request('GET', 'location-area?limit=1000');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 

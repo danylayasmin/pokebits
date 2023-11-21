@@ -6,9 +6,12 @@ use App\Models\Type;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Console\Command;
+use App\Traits\HandlesPokeAPIResponse;
 
 class PokeapiTypesCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:types';
 
     protected $description = 'Fetch Types data from PokeAPI and store it in the database.';
@@ -24,8 +27,7 @@ class PokeapiTypesCommand extends Command
         ]);
         $response = $client->request('GET', 'type');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 

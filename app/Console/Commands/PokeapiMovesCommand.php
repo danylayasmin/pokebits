@@ -6,9 +6,12 @@ use App\Models\Move;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Console\Command;
+use App\Traits\HandlesPokeAPIResponse;
 
 class PokeapiMovesCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:moves';
 
     protected $description = 'Fetch Moves data from PokeAPI and store it in the database.';
@@ -24,8 +27,7 @@ class PokeapiMovesCommand extends Command
         ]);
         $response = $client->request('GET', 'move?limit=1000');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 

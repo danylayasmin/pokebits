@@ -6,9 +6,12 @@ use App\Models\Pokemon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Console\Command;
+use App\Traits\HandlesPokeAPIResponse;
 
 class PokeapiPokemonCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:pokemon';
 
     protected $description = 'Fetch Pokemon data from PokeAPI and store it in the database.';
@@ -24,8 +27,7 @@ class PokeapiPokemonCommand extends Command
         ]);
         $response = $client->request('GET', 'pokemon?limit=2000');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 

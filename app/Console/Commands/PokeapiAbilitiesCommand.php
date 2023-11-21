@@ -6,9 +6,12 @@ use App\Models\Ability;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Console\Command;
+use App\Traits\HandlesPokeAPIResponse;
 
 class PokeapiAbilitiesCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:abilities';
 
     protected $description = 'Fetch Abilities data from PokeAPI and store it in the database.';
@@ -24,8 +27,7 @@ class PokeapiAbilitiesCommand extends Command
         ]);
         $response = $client->request('GET', 'ability?limit=500');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 

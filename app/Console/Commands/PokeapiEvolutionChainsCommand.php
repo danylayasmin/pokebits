@@ -6,9 +6,12 @@ use App\Models\EvolutionChain;
 use App\Models\Pokemon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use App\Traits\HandlesPokeAPIResponse;
 
 class PokeapiEvolutionChainsCommand extends Command
 {
+    use HandlesPokeAPIResponse;
+
     protected $signature = 'pokeapi:evolution-chains';
 
     protected $description = 'Fetch Evolution Chains data from PokeAPI and store it in the database.';
@@ -21,8 +24,7 @@ class PokeapiEvolutionChainsCommand extends Command
         ]);
         $response = $client->request('GET', 'evolution-chain?limit=800');
 
-        if ($response->getStatusCode() !== 200) {
-            $this->error('Failed to fetch data from PokeAPI.');
+        if (!$this->checkResponse($response)) {
             return;
         }
 
