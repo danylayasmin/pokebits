@@ -19,7 +19,9 @@ class PokeapiAllCommand extends Command
 
     private function runAllCommands(): void
     {
-        if ($this->confirm('This command will take a long time to run. Are you sure you want to continue?')) {
+        if ($this->confirm('This command will take a long time to run. Up to a total of 30 minutes.' . PHP_EOL . 'Are you sure you want to continue?')) {
+            $startTime = microtime(true);
+
             $this->call('pokeapi:habitats');
             $this->call('pokeapi:types');
             $this->call('pokeapi:abilities');
@@ -33,7 +35,11 @@ class PokeapiAllCommand extends Command
             $this->call('pokeapi:species-types');
             $this->call('pokeapi:items');
 
+            $endTime = microtime(true);
+            $executionTime = round($endTime - $startTime, 2);
+
             $this->info(PHP_EOL . 'All commands have been run.');
+            $this->info("Total execution time: {$executionTime} seconds.");
         }
 
     }

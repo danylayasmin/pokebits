@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Pokemon;
-use App\Models\SpeciesTypes;
+use App\Models\SpeciesType;
 use App\Models\Type;
 use App\Traits\HandlesPokeAPIResponse;
 use GuzzleHttp\Client;
@@ -69,7 +69,7 @@ class PokeapiSpeciesTypesCommand extends Command
 
                 foreach ($types as $type) {
                     $typeId = Type::where('name', $type)->first()->id;
-                    SpeciesTypes::updateOrCreate([
+                    SpeciesType::updateOrCreate([
                         'species_id' => $speciesData['id'],
                         'type_id' => $typeId
                     ],
