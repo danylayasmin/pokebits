@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Evolution_Chain extends Model
+class EvolutionChain extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'pokemon_id',
         'evolution_chain',
     ];
 
+    protected $casts = [
+        'evolution_chain' => 'array',
+    ];
+
     public function pokemon()
     {
-        return $this->belongsTo(Pokemon::class);
+        return $this->belongsTo(Pokemon::class, 'pokemon_id', 'pokemon_id');
     }
 }
