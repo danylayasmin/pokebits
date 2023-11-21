@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use DB;
 use Illuminate\Database\Seeder;
+use Symfony\Component\Process\Process;
 
 class SQLDumpSeeder extends Seeder
 {
@@ -18,7 +19,18 @@ class SQLDumpSeeder extends Seeder
 
         $this->command->info('Populating database from dump file...');
 
-            DB::unprepared(file_get_contents($dump_path));
+        $process = new Process([
+            'mysql',
+            '-h',
+            DB::getConfig('host'),
+            '-u',
+            DB::getConfig('username'),
+            '--password=' . DB::getConfig('password'),
+            DB::getConfig('database'),
+            '-e',
+            'source ' . $dump_path,
+        ]);
+        $process->mustRun();
 
     }
 }
