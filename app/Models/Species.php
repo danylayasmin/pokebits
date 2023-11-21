@@ -26,23 +26,11 @@ class Species extends Model
 
     public function habitat(): BelongsTo
     {
-        return $this->belongsTo(Habitat::class);
+        return $this->belongsTo(Habitat::class, 'habitat', 'name');
     }
 
-    public function pokemon(): BelongsTo
+    public function pokemon_name(): BelongsTo
     {
         return $this->belongsTo(Pokemon::class, 'pokemon_name', 'name');
     }
-
-    public function types(): BelongsToMany
-    {
-        return $this->belongsToMany(Type::class, 'species_types');
-    }
-
-    public function evolutionChain(): HasOne
-    {
-        return $this->hasOne(EvolutionChain::class);
-    }
-
-
 }
