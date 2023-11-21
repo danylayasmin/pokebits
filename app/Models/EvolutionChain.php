@@ -15,7 +15,7 @@ class EvolutionChain extends Model
         'evolution_chain' => 'array',
     ];
 
-    public function pokemon()
+    public function pokemon_id()
     {
         return $this->belongsTo(Pokemon::class, 'pokemon_id', 'pokemon_id');
     }
