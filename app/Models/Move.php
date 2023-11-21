@@ -14,11 +14,11 @@ class Move extends Model
         'pp',
         'priority',
         'power',
-        'type'
+        'type',
     ];
 
     public function type(): BelongsTo
     {
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(Type::class, 'type', 'name');
     }
 }
