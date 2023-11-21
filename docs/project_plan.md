@@ -129,13 +129,16 @@ Detailed user stories and task breakdowns will be meticulously outlined in subse
 
 _Please note that slight changes might occur during development._
 
-📅 **Planning:**  
+### 📋 **ERD:**
+![Pokebit diagram](pokebits_diagram.png)
+
+## 📅 **Planning:**  
 Work in progress, will be added to this document later.
 
-🖼️ **Wireframe:**  
+## 🖼️ **Wireframe:**  
 As a backend-centric project, wireframing is not applicable in this context, focusing solely on API and database design.
 
 ---
 
-_***TLDR***:
+_***TLDR**:*
 We're creating an easy-to-use Pokémon data API with robust filtering, good documentation, and caching. We'll pull data from PokeAPI, store it ourselves, and handle caching so developers can focus on their front-end. No scraping, only English data, no user accounts or dashboards. Using PHP, Laravel, MySQL, and other tech for development, deployment, and monitoring. Detailed planning and wireframing not relevant for this backend-focused project._
