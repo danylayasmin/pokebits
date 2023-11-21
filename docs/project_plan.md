@@ -22,7 +22,7 @@ The project aims to create an easy-to-use, robust, and well-documented API to gi
 -   Build a separate dashboard, as the project solely focuses on backend development.
 
 ## 📝 **User Stories and Tasks:**  
-Detailed user stories and task breakdowns will be meticulously outlined in subsequent phases, aligning with the project's objectives.
+Detailed user stories and task breakdowns will be meticulously outlined in subsequent phases, aligning with the project's objectives. You can check our [Trello-board](https://trello.com/b/UXnsh82o/pok%C3%A9bits) to see all the user stories.
 
 ## 💻 **Technologies:**
 
