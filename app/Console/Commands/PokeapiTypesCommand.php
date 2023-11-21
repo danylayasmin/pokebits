@@ -11,16 +11,16 @@ class PokeapiTypesCommand extends Command
 {
     protected $signature = 'pokeapi:types';
 
-    protected $description = 'Command description';
+    protected $description = 'Fetch Types data from PokeAPI and store it in the database.';
 
     /**
      * @throws GuzzleException
      */
-    public function handle()
+    public function handle(): void
     {
         $client = new Client([
             'base_uri' => 'https://pokeapi.co/api/v2/',
-            'timeout' => 3.0,
+            'timeout' => 5.0,
         ]);
         $response = $client->request('GET', 'type');
 
@@ -31,55 +31,12 @@ class PokeapiTypesCommand extends Command
 
         $data = json_decode($response->getBody()->getContents(), true);
 
-        foreach ($data['results'] as $typeResults) {
-//            "results": [
-//    {
-//        "name": "normal",
-//      "url": "https://pokeapi.co/api/v2/type/1/"
-//    },
-//    {
-//        "name": "fighting",
-//      "url": "https://pokeapi.co/api/v2/type/2/"
-//    },
+        $progressbar = $this->output->createProgressBar($data['count']);
+        $progressbar->start();
 
-            $this->info('Fetching data for ' . $typeResults['name'] . '...');
+        foreach ($data['results'] as $typeResults) {
             $response = $client->request('GET', $typeResults['url']);
             $typeData = json_decode($response->getBody()->getContents(), true);
-//            {
-//                "damage_relations": {
-//                "double_damage_from": [
-//      {
-//          "name": "fighting",
-//        "url": "https://pokeapi.co/api/v2/type/2/"
-//      }
-//    ],
-//    "double_damage_to": [],
-//    "half_damage_from": [],
-//    "half_damage_to": [
-//      {
-//          "name": "rock",
-//        "url": "https://pokeapi.co/api/v2/type/6/"
-//      },
-//      {
-//          "name": "steel",
-//        "url": "https://pokeapi.co/api/v2/type/9/"
-//      }
-//    ],
-//    "no_damage_from": [
-//      {
-//          "name": "ghost",
-//        "url": "https://pokeapi.co/api/v2/type/8/"
-//      }
-//    ],
-//    "no_damage_to": [
-//      {
-//          "name": "ghost",
-//        "url": "https://pokeapi.co/api/v2/type/8/"
-//      }
-//    ]
-//  },
-
-            // Only add the names of the types to the damage relations
             Type::updateOrCreate([
                 'name' => $typeData['name'],
                 'double_damage_from' => collect($typeData['damage_relations']['double_damage_from'])->pluck('name')->toArray(),
@@ -89,7 +46,12 @@ class PokeapiTypesCommand extends Command
                 'no_damage_from' => collect($typeData['damage_relations']['no_damage_from'])->pluck('name')->toArray(),
                 'no_damage_to' => collect($typeData['damage_relations']['no_damage_to'])->pluck('name')->toArray(),
             ]);
+
+            $progressbar->advance();
+            sleep(0.10);
         }
+
+        $progressbar->finish();
 
         $this->info('Finished fetching Types from PokeAPI.');
     }

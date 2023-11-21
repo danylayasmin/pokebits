@@ -25,7 +25,7 @@ class PokeapiHabitatsCommand extends Command
     {
         $client = new Client([
             'base_uri' => 'https://pokeapi.co/api/v2/',
-            'timeout' => 3.0,
+            'timeout' => 5.0,
         ]);
         $response = $client->request('GET', 'pokemon-habitat');
 
@@ -36,14 +36,21 @@ class PokeapiHabitatsCommand extends Command
 
         $data = json_decode($response->getBody()->getContents(), true);
 
+        $progressbar = $this->output->createProgressBar($data['count']);
+        $progressbar->start();
+
         foreach ($data['results'] as $habitat) {
-            $this->info('Fetching data for ' . $habitat['name'] . '...');
             $response = $client->request('GET', $habitat['url']);
             $habitatData = json_decode($response->getBody()->getContents(), true);
             Habitat::updateOrCreate([
                 'name' => $habitatData['name'],
             ]);
+
+            $progressbar->advance();
+            sleep(0.10);
         }
+
+        $progressbar->finish();
 
         $this->info('Finished fetching Habitats from PokeAPI.');
     }
