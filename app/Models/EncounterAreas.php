@@ -15,7 +15,7 @@ class EncounterAreas extends Model
         'chance',
     ];
 
-    public function pokemon_name(): BelongsTo
+    public function pokemon(): BelongsTo
     {
         return $this->belongsTo(Pokemon::class, 'pokemon_name', 'name');
     }

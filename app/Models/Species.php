@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Species extends Model
@@ -26,7 +27,7 @@ class Species extends Model
 
     public function habitat(): BelongsTo
     {
-        return $this->belongsTo(Habitat::class);
+        return $this->belongsTo(Habitat::class, 'habitat', 'name');
     }
 
     public function pokemon(): BelongsTo
@@ -34,15 +35,8 @@ class Species extends Model
         return $this->belongsTo(Pokemon::class, 'pokemon_name', 'name');
     }
 
-    public function types(): BelongsToMany
+    public function species_types(): HasMany
     {
-        return $this->belongsToMany(Type::class, 'species_types');
+        return $this->hasMany(SpeciesTypes::class, 'species_id', 'id');
     }
-
-    public function evolutionChain(): HasOne
-    {
-        return $this->hasOne(EvolutionChain::class);
-    }
-
-
 }
