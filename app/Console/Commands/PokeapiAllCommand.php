@@ -31,6 +31,7 @@ class PokeapiAllCommand extends Command
             $this->call('pokeapi:pokemon-abilities');
             $this->call('pokeapi:pokemon-types');
             $this->call('pokeapi:species-types');
+            $this->call('pokeapi:items');
 
             $this->info(PHP_EOL . 'All commands have been run.');
         }
