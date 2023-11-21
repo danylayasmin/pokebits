@@ -29,7 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('pokemon', function (Request $request) {
-            return Limit::perMinute(2)->by($request->ip());
+            return Limit::perMinute(150)->by($request->ip());
         });
 
         $this->routes(function () {
