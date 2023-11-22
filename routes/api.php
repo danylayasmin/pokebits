@@ -93,10 +93,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [EvolutionChainController::class, 'index']
     )->name('evolution-chain.index');
 
-    Route::get(
-        '/evolution-chain/{pokemon_id}',
-        [EvolutionChainController::class, 'getById']
-    )->name('evolution-chain.id');
+    Route::get('/evolution-chain/{pokemon_id}', [EvolutionChainController::class, 'getById'])
+        ->where('pokemon_id', '[0-9]+')
+        ->name('evolution-chain.id');
 
     Route::post(
         '/evolution-chain',
