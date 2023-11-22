@@ -208,5 +208,32 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Abilities routes
+Route::middleware(['throttle:pokemon'])->group(function () {
+    Route::get(
+        '/ability',
+        [AbilityController::class, 'index']
+    )->name('ability.index');
+
+    Route::get(
+        '/ability/{name}',
+        [AbilityController::class, 'getByName']
+    )->name('ability.name');
+    
+    Route::post(
+        '/ability',
+        [AbilityController::class, 'store']
+    )->name('ability.store');
+
+    Route::put(
+        '/ability/{id}',
+        [AbilityController::class, 'update']
+    )->name('ability.update');
+    
+    Route::delete(
+        '/ability/{id}',
+        [AbilityController::class, 'destroy']
+    )->name('ability.destroy');
+});
+
 // Habitats routes
 // Types routes
