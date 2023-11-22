@@ -13,6 +13,11 @@ class EvolutionChainController extends Controller
         return EvolutionChainResource::collection(EvolutionChain::all());
     }
 
+    public function getById($id)
+    {
+        return new EvolutionChainResource(EvolutionChain::where('pokemon_id', $id)->first());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -21,11 +26,6 @@ class EvolutionChainController extends Controller
         ]);
 
         return new EvolutionChainResource(EvolutionChain::create($request->validated()));
-    }
-
-    public function show(EvolutionChain $evolutionChain)
-    {
-        return new EvolutionChainResource($evolutionChain);
     }
 
     public function update(Request $request, EvolutionChain $evolutionChain)

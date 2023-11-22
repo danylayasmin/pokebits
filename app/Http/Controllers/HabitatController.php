@@ -13,6 +13,11 @@ class HabitatController extends Controller
         return HabitatResource::collection(Habitat::all());
     }
 
+    public function getByName($name)
+    {
+        return HabitatResource::collection(Habitat::where('name', $name)->get());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -20,11 +25,6 @@ class HabitatController extends Controller
         ]);
 
         return new HabitatResource(Habitat::create($request->validated()));
-    }
-
-    public function show(Habitat $habitat)
-    {
-        return new HabitatResource($habitat);
     }
 
     public function update(Request $request, Habitat $habitat)

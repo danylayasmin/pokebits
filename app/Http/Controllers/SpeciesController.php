@@ -13,6 +13,11 @@ class SpeciesController extends Controller
         return SpeciesResource::collection(Species::all());
     }
 
+    public function getByName($name)
+    {
+        return new SpeciesResource(Species::where('pokemon_name', $name)->first());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -32,11 +37,6 @@ class SpeciesController extends Controller
         ]);
 
         return new SpeciesResource(Species::create($request->validated()));
-    }
-
-    public function show(Species $species)
-    {
-        return new SpeciesResource($species);
     }
 
     public function update(Request $request, Species $species)

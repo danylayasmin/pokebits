@@ -13,6 +13,16 @@ class PokemonController extends Controller
         return PokemonResource::collection(Pokemon::all());
     }
 
+    public function getById($id)
+    {
+        return new PokemonResource(Pokemon::find($id));
+    }
+
+    public function getByName($name)
+    {
+        return new PokemonResource(Pokemon::where('name', $name)->first());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -30,11 +40,6 @@ class PokemonController extends Controller
         ]);
 
         return new PokemonResource(Pokemon::create($request->validated()));
-    }
-
-    public function show(Pokemon $pokemon)
-    {
-        return new PokemonResource($pokemon);
     }
 
     public function update(Request $request, Pokemon $pokemon)

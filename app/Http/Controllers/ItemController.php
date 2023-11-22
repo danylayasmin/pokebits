@@ -13,6 +13,11 @@ class ItemController extends Controller
         return ItemResource::collection(Item::all());
     }
 
+    public function getByName($name)
+    {
+        return ItemResource::collection(Item::where('name', $name)->get());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -23,11 +28,6 @@ class ItemController extends Controller
         ]);
 
         return new ItemResource(Item::create($request->validated()));
-    }
-
-    public function show(Item $item)
-    {
-        return new ItemResource($item);
     }
 
     public function update(Request $request, Item $item)

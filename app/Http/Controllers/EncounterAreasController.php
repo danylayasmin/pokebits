@@ -13,6 +13,11 @@ class EncounterAreasController extends Controller
         return EncounterAreasResource::collection(EncounterAreas::all());
     }
 
+    public function getByName($name)
+    {
+        return EncounterAreasResource::collection(EncounterAreas::where('pokemon_name', $name)->get());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -24,11 +29,6 @@ class EncounterAreasController extends Controller
         ]);
 
         return new EncounterAreasResource(EncounterAreas::create($request->validated()));
-    }
-
-    public function show(EncounterAreas $encounterAreas)
-    {
-        return new EncounterAreasResource($encounterAreas);
     }
 
     public function update(Request $request, EncounterAreas $encounterAreas)

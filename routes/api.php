@@ -35,15 +35,13 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [PokemonController::class, 'index']
     )->name('pokemon.index');
 
-    Route::get(
-        '/pokemon/{id}',
-        [PokemonController::class, 'getById']
-    )->name('pokemon.id');
+    Route::get('/pokemon/{id}', [PokemonController::class, 'getById'])
+        ->where('id', '[0-9]+')
+        ->name('pokemon.id');
     
-    Route::get(
-        '/pokemon/{name}',
-        [PokemonController::class, 'getByName']
-    )->name('pokemon.name');
+    Route::get('/pokemon/{name}', [PokemonController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('pokemon.name');
 
     Route::post(
         '/pokemon',
@@ -68,10 +66,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [SpeciesController::class, 'index']
     )->name('species.index');
 
-    Route::get(
-        '/species/{name}',
-        [SpeciesController::class, 'getByName']
-    )->name('species.name');
+    Route::get('/species/{name}', [SpeciesController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('species.name');
 
     Route::post(
         '/species',
@@ -96,10 +93,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [EvolutionChainController::class, 'index']
     )->name('evolution-chain.index');
 
-    Route::get(
-        '/evolution-chain/{pokemon_id}',
-        [EvolutionChainController::class, 'getById']
-    )->name('evolution-chain.id');
+    Route::get('/evolution-chain/{pokemon_id}', [EvolutionChainController::class, 'getById'])
+        ->where('pokemon_id', '[0-9]+')
+        ->name('evolution-chain.id');
 
     Route::post(
         '/evolution-chain',
@@ -124,10 +120,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function (){
         [EncounterAreaController::class, 'index']
     )->name('encounter-area.index');
 
-    Route::get(
-        '/encounter-area/{name}',
-        [EncounterAreaController::class, 'getByName']
-    )->name('encounter-area.name');
+    Route::get('/encounter-area/{name}', [EncounterAreaController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('encounter-area.name');
 
     Route::post(
         '/encounter-area',
@@ -152,10 +147,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [ItemController::class, 'index']
     )->name('item.index');
 
-    Route::get(
-        '/item/{name}',
-        [ItemController::class, 'getByName']
-    )->name('item.name');
+    Route::get('/item/{name}', [ItemController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('item.name');
 
     Route::post(
         '/item',
@@ -180,10 +174,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [MoveController::class, 'index']
     )->name('move.index');
 
-    Route::get(
-        '/move/{name}',
-        [MoveController::class, 'getByName']
-    )->name('move.name');
+    Route::get('/move/{name}', [MoveController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('move.name');
 
     Route::post(
         '/move',
@@ -208,10 +201,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [AbilityController::class, 'index']
     )->name('ability.index');
 
-    Route::get(
-        '/ability/{name}',
-        [AbilityController::class, 'getByName']
-    )->name('ability.name');
+    Route::get('/ability/{name}', [AbilityController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('ability.name');
     
     Route::post(
         '/ability',
@@ -236,10 +228,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [HabitatController::class, 'index']
     )->name('habitat.index');
 
-    Route::get(
-        '/habitat/{name}',
-        [HabitatController::class, 'getByName']
-    )->name('habitat.name');
+    Route::get('/habitat/{name}', [HabitatController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('habitat.name');
 
     Route::post(
         '/habitat',
@@ -264,10 +255,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [TypeController::class, 'index']
     )->name('type.index');
 
-    Route::get(
-        '/type/{name}',
-        [TypeController::class, 'getByName']
-    )->name('type.name');
+    Route::get('/type/{name}', [TypeController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('type.name');
 
     Route::post(
         '/type',

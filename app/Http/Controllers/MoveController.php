@@ -13,6 +13,11 @@ class MoveController extends Controller
         return MoveResource::collection(Move::all());
     }
 
+    public function getByName($name)
+    {
+        return MoveResource::collection(Move::where('name', $name)->get());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -26,11 +31,6 @@ class MoveController extends Controller
         ]);
 
         return new MoveResource(Move::create($request->validated()));
-    }
-
-    public function show(Move $move)
-    {
-        return new MoveResource($move);
     }
 
     public function update(Request $request, Move $move)
