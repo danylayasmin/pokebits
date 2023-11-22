@@ -86,7 +86,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Evolution chain routes
-Route::middleware(['throttle:pokemon'])->group(function (){
+Route::middleware(['throttle:pokemon'])->group(function () {
     Route::get(
         '/evolution-chain',
         [EvolutionChainController::class, 'index']
