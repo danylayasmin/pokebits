@@ -15,7 +15,11 @@ class AbilityController extends Controller
 
     public function getByName($name)
     {
-        return AbilityResource::collection(Ability::where('name', $name)->get());
+        $ability = Ability::where('name', $name)->first();
+        if(!$ability) {
+            return returnErrorJson('Ability not found', 404);
+        }
+        return new AbilityResource($ability);
     }
 
     public function store(Request $request)
