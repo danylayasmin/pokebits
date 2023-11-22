@@ -28,8 +28,13 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 
     Route::get(
         '/pokemon/{id}',
-        [PokemonController::class, 'show']
-    )->name('pokemon.show');
+        [PokemonController::class, 'getById']
+    )->name('pokemon.id');
+    
+    Route::get(
+        '/pokemon/{name}',
+        [PokemonController::class, 'getByName']
+    )->name('pokemon.name');
 
     Route::post(
         '/pokemon',
