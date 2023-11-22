@@ -116,11 +116,6 @@ Route::middleware(['throttle:pokemon'])->group(function (){
     )->name('encounter-area.index');
 
     Route::get(
-        '/encounter-area/{id}',
-        [EncounterAreaController::class, 'getById']
-    )->name('encounter-area.id');
-
-    Route::get(
         '/encounter-area/{name}',
         [EncounterAreaController::class, 'getByName']
     )->name('encounter-area.name');
