@@ -21,4 +21,14 @@ class Pokemon extends Model
         'height',
         'weight',
     ];
+
+    public function types()
+    {
+        return $this->belongsToMany(Type::class, 'pokemon_types', 'pokemon', 'type', 'name', 'name');
+    }
+
+    public function abilities()
+    {
+        return $this->belongsToMany(Ability::class, 'pokemon_abilities', 'pokemon', 'ability', 'name', 'name');
+    }
 }

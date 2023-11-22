@@ -8,9 +8,30 @@ use Illuminate\Http\Request;
 
 class PokemonController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return PokemonResource::collection(Pokemon::all());
+        $pokemon = Pokemon::query()
+            ->with('types')
+            ->with('abilities');
+
+        if ($request->has('name')) {
+            $pokemon->where('name', $request->input('name'));
+        }
+        if ($request->has('type')) {
+            $pokemon->whereHas('types', function ($query) use ($request) {
+                $query->where('name', $request->input('type'));
+            });
+        }
+
+        if ($request->has('ability')) {
+            $pokemon->whereHas('abilities', function ($query) use ($request) {
+                $query->where('name', $request->input('ability'));
+            });
+        }
+
+        $res = $pokemon->get();
+
+        return PokemonResource::collection($res);
     }
 
     public function getById($id)

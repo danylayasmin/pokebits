@@ -10,7 +10,7 @@ class PokemonResource extends JsonResource
 {
     public function toArray(Request $request)
     {
-        return [
+        $array = [
             'id' => $this->id,
             'pokemon_id' => $this->pokemon_id,
             'name' => $this->name,
@@ -25,8 +25,33 @@ class PokemonResource extends JsonResource
             'stat_speed' => $this->stat_speed,
             'height' => $this->height,
             'weight' => $this->weight,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
+
+        if ($this->relationLoaded('types')) {
+            $array['types'] = $this->types->map(function ($type) {
+                return [
+                    'id' => $type->id,
+                    'name' => $type->name,
+                    'double_damage_from' => $type->double_damage_from,
+                    'double_damage_to' => $type->double_damage_to,
+                    'half_damage_from' => $type->half_damage_from,
+                    'half_damage_to' => $type->half_damage_to,
+                    'no_damage_from' => $type->no_damage_from,
+                    'no_damage_to' => $type->no_damage_to,
+                ];
+            });
+        }
+
+        if ($this->relationLoaded('abilities')) {
+            $array['abilities'] = $this->abilities->map(function ($ability) {
+                return [
+                    'id' => $ability->id,
+                    'name' => $ability->name,
+                    'description' => $ability->description,
+                ];
+            });
+        }
+
+        return $array;
     }
 }
