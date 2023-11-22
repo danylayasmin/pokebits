@@ -17,7 +17,7 @@ class AbilityController extends Controller
     {
         $ability = Ability::where('name', $name)->first();
         if(!$ability) {
-            return returnErrorJson('Ability not found', 404);
+            return errorJson('Ability not found', 404);
         }
         return new AbilityResource($ability);
     }
