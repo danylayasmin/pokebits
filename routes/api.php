@@ -174,10 +174,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [MoveController::class, 'index']
     )->name('move.index');
 
-    Route::get(
-        '/move/{name}',
-        [MoveController::class, 'getByName']
-    )->name('move.name');
+    Route::get('/move/{name}', [MoveController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('move.name');
 
     Route::post(
         '/move',
