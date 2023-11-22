@@ -236,4 +236,31 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Habitats routes
+Route::middleware(['throttle:pokemon'])->group(function () {
+    Route::get(
+        '/habitat',
+        [HabitatController::class, 'index']
+    )->name('habitat.index');
+
+    Route::get(
+        '/habitat/{name}',
+        [HabitatController::class, 'getByName']
+    )->name('habitat.name');
+
+    Route::post(
+        '/habitat',
+        [HabitatController::class, 'store']
+    )->name('habitat.store');
+    
+    Route::put(
+        '/habitat/{id}',
+        [HabitatController::class, 'update']
+    )->name('habitat.update');
+    
+    Route::delete(
+        '/habitat/{id}',
+        [HabitatController::class, 'destroy']
+    )->name('habitat.destroy');
+});
+
 // Types routes
