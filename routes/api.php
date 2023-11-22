@@ -119,6 +119,10 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Encounter areas routes
+Route::middleware(['throttle:pokemon'])->group(function (){
+
+})
+
 // Items routes
 // Moves routes
 // Abilities routes
