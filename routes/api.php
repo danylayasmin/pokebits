@@ -180,6 +180,33 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Moves routes
+Route::middleware(['throttle:pokemon'])->group(function () {
+    Route::get(
+        '/move',
+        [MoveController::class, 'index']
+    )->name('move.index');
+
+    Route::get(
+        '/move/{name}',
+        [MoveController::class, 'getByName']
+    )->name('move.name');
+
+    Route::post(
+        '/move',
+        [MoveController::class, 'store']
+    )->name('move.store');
+
+    Route::pute(
+        '/move/{id}',
+        [MoveController::class, 'update']
+    )->name('move.update');
+
+    Route::delete(
+        '/move/{id}',
+        [MoveController::class, 'destroy']
+    )->name('move.destroy');
+});
+
 // Abilities routes
 // Habitats routes
 // Types routes
