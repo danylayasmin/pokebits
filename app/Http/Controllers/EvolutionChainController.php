@@ -17,7 +17,7 @@ class EvolutionChainController extends Controller
     {
         $evolutionChain = EvolutionChain::where('id', $id)->first();
         if (!$evolutionChain) {
-            return returnErrorJson('Evolution chain not found', 404);
+            return errorJson('Evolution chain not found', 404);
         }
         return new EvolutionChainResource($evolutionChain);
     }
