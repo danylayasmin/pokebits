@@ -13,6 +13,11 @@ class TypeController extends Controller
         return TypeResource::collection(Type::all());
     }
 
+    public function getByName($name)
+    {
+        return TypeResource::collection(Type::where('name', $name)->get());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -26,11 +31,6 @@ class TypeController extends Controller
         ]);
 
         return new TypeResource(Type::create($request->validated()));
-    }
-
-    public function show(Type $type)
-    {
-        return new TypeResource($type);
     }
 
     public function update(Request $request, Type $type)
