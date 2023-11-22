@@ -86,6 +86,38 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Evolution chain routes
+Route::middleware(['throttle:pokemon'])->group(function (){
+    Route::get(
+        '/evolution-chain',
+        [EvolutionChainController::class, 'index']
+    )->name('evolution-chain.index');
+
+    Route::get(
+        '/evolution-chain/{id}',
+        [EvolutionChainController::class, 'getById']
+    )->name('evolution-chain.id');
+
+    Route::get(
+        '/evolution-chain/{name}',
+        [EvolutionChainController::class, 'getByName']
+    )->name('evolution-chain.name');
+
+    Route::post(
+        '/evolution-chain',
+        [EvolutionChainController::class, 'store']
+    )->name('evolution-chain.store');
+
+    Route::put(
+        '/evolution-chain/{id}',
+        [EvolutionChainController::class, 'update']
+    )->name('evolution-chain.update');
+
+    Route::delete(
+        '/evolution-chain/{id}',
+        [EvolutionChainController::class, 'destroy']
+    )->name('evolution-chain.destroy');
+});
+
 // Encounter areas routes
 // Items routes
 // Moves routes
