@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App;
 use Cache;
 use Closure;
 use Illuminate\Http\Request;
@@ -16,19 +17,25 @@ class CacheMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $cacheKey = 'pokemon_' . md5($request->getUri());
+        // Check if the environment is 'production' or 'staging'
+        if (App::environment(['production', 'staging'])) {
+            $cacheKey = 'pokemon_' . md5($request->getUri());
 
-        if (Cache::has($cacheKey)) {
-            $cachedResponse = Cache::get($cacheKey);
-            return response()->json(json_decode(strval($cachedResponse)));
+            if (Cache::has($cacheKey)) {
+                $cachedResponse = Cache::get($cacheKey);
+                return response()->json(json_decode(strval($cachedResponse)));
+            }
+
+            // default response
+            $response = $next($request);
+
+            // cache response
+            Cache::put($cacheKey, $response->getContent(), 1440);
+
+            return $response;
         }
 
-        // default response
-        $response = $next($request);
-
-        // cache response
-        Cache::put($cacheKey, $response->getContent(), 1440);
-
-        return $response;
+        // If not in 'production' or 'staging', handle the request normally
+        return $next($request);
     }
 }
