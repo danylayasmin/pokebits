@@ -2,6 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\SpeciesController;
+use App\Http\Controllers\EvolutionChainController;
+use App\Http\Controllers\EncounterAreaController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MoveController;
+use App\Http\Controllers\AbilityController;
+use App\Http\Controllers\HabitatController;
+use App\Http\Controllers\TypeController;
 
 /*
 |--------------------------------------------------------------------------
