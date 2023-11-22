@@ -249,3 +249,29 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Types routes
+Route::middleware(['throttle:pokemon'])->group(function () {
+    Route::get(
+        '/type',
+        [TypeController::class, 'index']
+    )->name('type.index');
+
+    Route::get(
+        '/type/{name}',
+        [TypeController::class, 'getByName']
+    )->name('type.name');
+
+    Route::post(
+        '/type',
+        [TypeController::class, 'store']
+    )->name('type.store');
+
+    Route::put(
+        '/type/{id}',
+        [TypeController::class, 'update']
+    )->name('type.update');
+
+    Route::delete(
+        '/type/{id}',
+        [TypeController::class, 'destroy']
+    )->name('type.destroy');
+});
