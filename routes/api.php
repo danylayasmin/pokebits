@@ -66,10 +66,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [SpeciesController::class, 'index']
     )->name('species.index');
 
-    Route::get(
-        '/species/{name}',
-        [SpeciesController::class, 'getByName']
-    )->name('species.name');
+    Route::get('/species/{name}', [SpeciesController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('species.name');
 
     Route::post(
         '/species',
