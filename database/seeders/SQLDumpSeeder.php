@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use DB;
 use Illuminate\Database\Seeder;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class SQLDumpSeeder extends Seeder
 {
@@ -30,7 +31,14 @@ class SQLDumpSeeder extends Seeder
             '-e',
             'source ' . $dump_path,
         ]);
-        $process->mustRun();
-
+        $process->setTimeout(500);
+        try {
+            $process->mustRun();
+            echo "Command executed successfully.";
+        } catch (ProcessFailedException $exception) {
+            echo "The command failed: " . $exception->getMessage() . "\n";
+            echo "Error Output: " . $process->getErrorOutput() . "\n";
+            echo "Output: " . $process->getOutput() . "\n";
+        }
     }
 }
