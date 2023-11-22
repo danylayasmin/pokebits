@@ -120,8 +120,36 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 
 // Encounter areas routes
 Route::middleware(['throttle:pokemon'])->group(function (){
+    Route::get(
+        '/encounter-area',
+        [EncounterAreaController::class, 'index']
+    )->name('encounter-area.index');
 
-})
+    Route::get(
+        '/encounter-area/{id}',
+        [EncounterAreaController::class, 'getById']
+    )->name('encounter-area.id');
+
+    Route::get(
+        '/encounter-area/{name}',
+        [EncounterAreaController::class, 'getByName']
+    )->name('encounter-area.name');
+
+    Route::post(
+        '/encounter-area',
+        [EncounterAreaController::class, 'store']
+    )->name('encounter-area.store');
+
+    Route::put(
+        '/encounter-area/{id}',
+        [EncounterAreaController::class, 'update']
+    )->name('encounter-area.update');
+
+    Route::delete(
+        '/encounter-area/{id}',
+        [EncounterAreaController::class, 'destroy']
+    )->name('encounter-area.destroy');
+});
 
 // Items routes
 // Moves routes
