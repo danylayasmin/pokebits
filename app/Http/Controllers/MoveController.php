@@ -17,9 +17,9 @@ class MoveController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'accuracy' => ['required'],
+            'accuracy' => ['nullable'],
             'effect_chance' => ['nullable', 'integer'],
-            'pp' => ['required', 'integer'],
+            'pp' => ['nullable', 'integer'],
             'priority' => ['nullable', 'integer'],
             'power' => ['nullable', 'integer'],
             'type' => ['required']
@@ -37,11 +37,12 @@ class MoveController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'accuracy' => ['required'],
+            'accuracy' => ['nullable'],
             'effect_chance' => ['nullable', 'integer'],
-            'pp' => ['required', 'integer'],
+            'pp' => ['nullable', 'integer'],
             'priority' => ['nullable', 'integer'],
             'power' => ['nullable', 'integer'],
+            'type' => ['required']
         ]);
 
         $move->update($request->validated());

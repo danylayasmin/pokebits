@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('habitats', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
+        Schema::table('species', function (Blueprint $table) {
+            $table->string('growth_rate')->nullable()->change();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('habitats');
+        Schema::table('species', function (Blueprint $table) {
+            $table->integer('growth_rate')->change();
+        });
     }
 };
