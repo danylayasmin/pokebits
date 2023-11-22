@@ -40,33 +40,39 @@ Denk je dat je ergens tegenaan gaat lopen vandaag?
 
 ## Danyla Huntjens
 Waar heb je gister aan gewerkt?
-
+- documentatie verbeteren
+- models checken, aanpassen indien nodig
+- paar user stories gemaakt
+- begin gemaakt aan api routes
 
 Waar ga je vandaag aan werken?
-
+- verder aan api routes
+- eloquent relaties testen
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- uitzoeken hoe te testen
 
 ## Martijn Kerpentier
 Waar heb je gister aan gewerkt?
-
+- paar user stories geschreven
+- rate limiting middleware
 
 Waar ga je vandaag aan werken?
-
+- onderzoek naar caching api responses
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- niet weten hoe
 
 ## Rico van Zelst
 Waar heb je gister aan gewerkt?
-
+- user stories geschreven
+- start aan data voor in database
 
 Waar ga je vandaag aan werken?
-
+- bugs oplossen data
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- sloom internet
 
 
 # **Dag 4**
