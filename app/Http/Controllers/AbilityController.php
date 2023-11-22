@@ -13,6 +13,11 @@ class AbilityController extends Controller
         return AbilityResource::collection(Ability::all());
     }
 
+    public function getByName($name)
+    {
+        return AbilityResource::collection(Ability::where('name', $name)->get());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -21,11 +26,6 @@ class AbilityController extends Controller
         ]);
 
         return new AbilityResource(Ability::create($request->validated()));
-    }
-
-    public function show(Ability $ability)
-    {
-        return new AbilityResource($ability);
     }
 
     public function update(Request $request, Ability $ability)
