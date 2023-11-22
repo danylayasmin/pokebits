@@ -88,14 +88,9 @@ Route::middleware(['throttle:pokemon'])->group(function () {
     )->name('evolution-chain.index');
 
     Route::get(
-        '/evolution-chain/{id}',
+        '/evolution-chain/{pokemon_id}',
         [EvolutionChainController::class, 'getById']
     )->name('evolution-chain.id');
-
-    Route::get(
-        '/evolution-chain/{name}',
-        [EvolutionChainController::class, 'getByName']
-    )->name('evolution-chain.name');
 
     Route::post(
         '/evolution-chain',
