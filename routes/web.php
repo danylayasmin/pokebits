@@ -18,4 +18,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// For routes that return calls of the api, use middleware throttle:pokemon to limit the number of calls to 150 per minute

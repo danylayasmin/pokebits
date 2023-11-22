@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// For routes that return calls of the api, use `::middleware(['throttle:pokemon'])` to limit the number of calls to 150 per minute
 // Pokemon routes
 Route::middleware(['throttle:pokemon'])->group(function () {
     Route::get(
