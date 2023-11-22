@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\EvolutionChainController;
-use App\Http\Controllers\EncounterAreaController;
+use App\Http\Controllers\EncounterAreasController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MoveController;
 use App\Http\Controllers\AbilityController;
@@ -117,26 +117,26 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
 Route::middleware(['throttle:pokemon', 'cache'])->group(function (){
     Route::get(
         '/encounter-area',
-        [EncounterAreaController::class, 'index']
+        [EncounterAreasController::class, 'index']
     )->name('encounter-area.index');
 
-    Route::get('/encounter-area/{name}', [EncounterAreaController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+    Route::get('/encounter-area/{area_name}', [EncounterAreasController::class, 'getByName'])
+        ->where('area_name', '[a-zA-Z\-]+')
         ->name('encounter-area.name');
 
     Route::post(
         '/encounter-area',
-        [EncounterAreaController::class, 'store']
+        [EncounterAreasController::class, 'store']
     )->name('encounter-area.store');
 
     Route::put(
         '/encounter-area/{id}',
-        [EncounterAreaController::class, 'update']
+        [EncounterAreasController::class, 'update']
     )->name('encounter-area.update');
 
     Route::delete(
         '/encounter-area/{id}',
-        [EncounterAreaController::class, 'destroy']
+        [EncounterAreasController::class, 'destroy']
     )->name('encounter-area.destroy');
 });
 
