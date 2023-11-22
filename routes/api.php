@@ -60,11 +60,6 @@ Route::middleware(['throttle:pokemon'])->group(function () {
     )->name('species.index');
 
     Route::get(
-        '/species/{id}',
-        [SpeciesController::class, 'getById']
-    )->name('species.id');
-
-    Route::get(
         '/species/{name}',
         [SpeciesController::class, 'getByName']
     )->name('species.name');
