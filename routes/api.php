@@ -35,15 +35,13 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [PokemonController::class, 'index']
     )->name('pokemon.index');
 
-    Route::get(
-        '/pokemon/{id}',
-        [PokemonController::class, 'getById']
-    )->name('pokemon.id');
+    Route::get('/pokemon/{id}', [PokemonController::class, 'getById'])
+        ->where('id', '[0-9]+')
+        ->name('pokemon.id');
     
-    Route::get(
-        '/pokemon/{name}',
-        [PokemonController::class, 'getByName']
-    )->name('pokemon.name');
+    Route::get('/pokemon/{name}', [PokemonController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('pokemon.name');
 
     Route::post(
         '/pokemon',
