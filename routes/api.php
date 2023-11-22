@@ -120,10 +120,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function (){
         [EncounterAreaController::class, 'index']
     )->name('encounter-area.index');
 
-    Route::get(
-        '/encounter-area/{name}',
-        [EncounterAreaController::class, 'getByName']
-    )->name('encounter-area.name');
+    Route::get('/encounter-area/{name}', [EncounterAreaController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('encounter-area.name');
 
     Route::post(
         '/encounter-area',
