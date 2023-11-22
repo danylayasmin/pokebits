@@ -255,10 +255,9 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [TypeController::class, 'index']
     )->name('type.index');
 
-    Route::get(
-        '/type/{name}',
-        [TypeController::class, 'getByName']
-    )->name('type.name');
+    Route::get('/type/{name}', [TypeController::class, 'getByName'])
+        ->where('name', '[a-zA-Z]+')
+        ->name('type.name');
 
     Route::post(
         '/type',
