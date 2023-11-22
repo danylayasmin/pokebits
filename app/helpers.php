@@ -34,12 +34,12 @@ function getAverageColorFromImageUrl($imageUrl): string
     $avgB = $totalB / $pixelCount;
 
     return sprintf("#%02x%02x%02x", $avgR, $avgG, $avgB);
+}
 
-    function returnErrorJson($message, $code = 400)
-    {
-        return response()->json([
-            'message' => $message,
-            'error_code' => $code,
-        ], $code);
-    }
+function errorJson($message, $code = 400)
+{
+    return response()->json([
+        'message' => $message,
+        'error_code' => $code,
+    ], $code);
 }
