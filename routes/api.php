@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // For routes that return calls of the api, use `::middleware(['throttle:pokemon'])` to limit the number of calls to 150 per minute
 // Pokemon routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/pokemon',
         [PokemonController::class, 'index']
@@ -62,7 +62,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Species routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/species',
         [SpeciesController::class, 'index']
@@ -90,7 +90,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Evolution chain routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/evolution-chain',
         [EvolutionChainController::class, 'index']
@@ -118,7 +118,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Encounter areas routes
-Route::middleware(['throttle:pokemon'])->group(function (){
+Route::middleware(['throttle:pokemon', 'cache'])->group(function (){
     Route::get(
         '/encounter-area',
         [EncounterAreaController::class, 'index']
@@ -146,7 +146,7 @@ Route::middleware(['throttle:pokemon'])->group(function (){
 });
 
 // Items routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/item',
         [ItemController::class, 'index']
@@ -174,7 +174,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Moves routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/move',
         [MoveController::class, 'index']
@@ -202,7 +202,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Abilities routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/ability',
         [AbilityController::class, 'index']
@@ -230,7 +230,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Habitats routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/habitat',
         [HabitatController::class, 'index']
@@ -258,7 +258,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Types routes
-Route::middleware(['throttle:pokemon'])->group(function () {
+Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get(
         '/type',
         [TypeController::class, 'index']
