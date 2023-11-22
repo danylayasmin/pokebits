@@ -53,6 +53,38 @@ Route::middleware(['throttle:pokemon'])->group(function () {
 });
 
 // Species routes
+Route::middleware(['throttle:pokemon'])->group(function () {
+    Route::get(
+        '/species',
+        [SpeciesController::class, 'index']
+    )->name('species.index');
+
+    Route::get(
+        '/species/{id}',
+        [SpeciesController::class, 'getById']
+    )->name('species.id');
+
+    Route::get(
+        '/species/{name}',
+        [SpeciesController::class, 'getByName']
+    )->name('species.name');
+
+    Route::post(
+        '/species',
+        [SpeciesController::class, 'store']
+    )->name('species.store');
+
+    Route::put(
+        '/species/{id}',
+        [SpeciesController::class, 'update']
+    )->name('species.update');
+
+    Route::delete(
+        '/species/{id}',
+        [SpeciesController::class, 'destroy']
+    )->name('species.destroy');
+});
+
 // Evolution chain routes
 // Encounter areas routes
 // Items routes
