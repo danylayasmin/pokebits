@@ -196,7 +196,7 @@ Route::middleware(['throttle:pokemon'])->group(function () {
         [MoveController::class, 'store']
     )->name('move.store');
 
-    Route::pute(
+    Route::put(
         '/move/{id}',
         [MoveController::class, 'update']
     )->name('move.update');
