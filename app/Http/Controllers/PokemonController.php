@@ -12,7 +12,11 @@ class PokemonController extends Controller
     {
         $pokemon = Pokemon::query()
             ->with('types')
-            ->with('abilities');
+            ->with('abilities')
+            ->with('species')
+            ->with('encounters')
+            ->with('evolution_chain')
+            ->with('habitat');
 
         if ($request->has('name')) {
             $pokemon->where('name', $request->input('name'));
@@ -59,6 +63,30 @@ class PokemonController extends Controller
         if ($request->has('ability')) {
             $pokemon->whereHas('abilities', function ($query) use ($request) {
                 $query->where('name', $request->input('ability'));
+            });
+        }
+
+        if ($request->has('species')) {
+            $pokemon->whereHas('species', function ($query) use ($request) {
+                $query->where('name', $request->input('species'));
+            });
+        }
+
+        if ($request->has('encounter')) {
+            $pokemon->whereHas('encounters', function ($query) use ($request) {
+                $query->where('name', $request->input('encounter'));
+            });
+        }
+
+        if ($request->has('evolution_chain')) {
+            $pokemon->whereHas('evolution_chain', function ($query) use ($request) {
+                $query->where('name', $request->input('evolution_chain'));
+            });
+        }
+
+        if ($request->has('habitat')) {
+            $pokemon->whereHas('habitat', function ($query) use ($request) {
+                $query->where('name', $request->input('habitat'));
             });
         }
 
