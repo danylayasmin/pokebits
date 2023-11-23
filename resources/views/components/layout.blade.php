@@ -7,18 +7,16 @@
     @vite('resources/css/app.css')
     <title>Pokébit @if(isset($title)) - {{ $title }} @endif</title>
 </head>
-<body>
-    <header class="fixed w-full flex flex-row justify-between">
-        <div class="flex flex-row items-center p-3 gap-2 text-white">
-            <a href="{{ route('home') }}"><img src="https://i.ibb.co/jzMJMX5/pokebits-OIG-removebg-preview.png" alt="Pokébit" class="w-20 h-20"></a>
-        </div>
-        <nav class="flex flex-row items-center">
-            <a href="{{ route('pokemon.index') }}" class="mr-4">Pokémon</a>
-        
-        </nav>
-    </header>
-    {{ $slot }}
-    <footer class="fixed bottom-0 w-full bg-slate-900 flex justify-center mt-10">
-    </footer>
+<body class="flex flex-col min-h-screen">
+    <div class="min-h-screen bg-gray-100">
+        <header class="bg-white shadow">
+            <div class="px-4 py-6 mx-auto max-w-7xl">
+                <a href="{{ route('home') }}"><img src="https://i.ibb.co/jzMJMX5/pokebits-OIG-removebg-preview.png" alt="Pokébit" class="w-40 h-40"></a>
+            </div>
+        </header>
+        <main>
+            {{ $slot }}
+        </main>
+    </div>  
 </body>
 </html>
