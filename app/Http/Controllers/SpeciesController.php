@@ -15,7 +15,11 @@ class SpeciesController extends Controller
 
     public function getByName($name)
     {
-        return new SpeciesResource(Species::where('pokemon_name', $name)->first());
+        $species = Species::where('pokemon_name', $name)->first();
+        if(!$species) {
+            return errorJson('Species not found', 404);
+        }
+        return new SpeciesResource($species);
     }
 
     public function store(Request $request)
