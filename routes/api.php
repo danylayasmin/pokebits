@@ -238,12 +238,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('habitat.store');
 
     Route::put(
-        '/habitat/{id}',
+        '/habitat/{habitat}',
         [HabitatController::class, 'update']
     )->name('habitat.update');
 
     Route::delete(
-        '/habitat/{id}',
+        '/habitat/{habitat}',
         [HabitatController::class, 'destroy']
     )->name('habitat.destroy');
 });
