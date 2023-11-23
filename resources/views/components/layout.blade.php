@@ -7,10 +7,10 @@
     @vite('resources/css/app.css')
     <title>Pokébit @if(isset($title)) - {{ $title }} @endif</title>
 </head>
-<body class="flex flex-col min-h-screen">
-    <div class="min-h-screen bg-gray-100">
-        <header class="bg-white shadow">
-            <div class="px-4 py-6 mx-auto max-w-7xl">
+<body class="flex flex-col min-h-screen bg-gradient-to-r from-red-500 to-yellow-500">
+    <div class="min-h-screen">
+        <header class="mt-20">
+            <div class="mx-auto max-w-7xl flex justify-center bg-white rounded-full w-40">
                 <a href="{{ route('home') }}"><img src="https://i.ibb.co/jzMJMX5/pokebits-OIG-removebg-preview.png" alt="Pokébit" class="w-40 h-40"></a>
             </div>
         </header>

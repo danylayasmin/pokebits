@@ -2,7 +2,7 @@
     <x-slot:title>
         Pokedex
     </x-slot>
-    <div class="items-center h-screen bg-gradient-to-r from-red-500 to-yellow-500 ">
+    <div class="items-center h-screen">
         <div class="py-12">
             <div class="min-h-screen items-center justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
                 <?php
