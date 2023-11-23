@@ -17,10 +17,6 @@ class PokemonController extends Controller
             ->with('encounters')
             ->with('habitat');
 
-        if ($request->has('name')) {
-            $pokemon->where('name', $request->input('name'));
-        }
-
         if ($request->has('hp')) {
             $pokemon->where('stat_hp', $request->input('hp'));
         }
@@ -62,12 +58,6 @@ class PokemonController extends Controller
         if ($request->has('ability')) {
             $pokemon->whereHas('abilities', function ($query) use ($request) {
                 $query->where('name', $request->input('ability'));
-            });
-        }
-
-        if ($request->has('species')) {
-            $pokemon->whereHas('species', function ($query) use ($request) {
-                $query->where('name', $request->input('species'));
             });
         }
 
