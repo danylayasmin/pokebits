@@ -229,7 +229,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('habitat.index');
 
     Route::get('/habitat/{name}', [HabitatController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('habitat.name');
 
     Route::post(
