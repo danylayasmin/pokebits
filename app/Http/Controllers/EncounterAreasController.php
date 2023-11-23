@@ -35,16 +35,19 @@ class EncounterAreasController extends Controller
 
     public function getByName($name)
     {
-        $encounterAreas = EncounterAreas::query()->where('pokemon_name', $name);
+        $encounterAreas = EncounterAreas::where('area_name', $name);
+
+        if  (!$encounterAreas) {
+            $encounterAreas->get();
+            if ($encounterAreas->isEmpty()) {
+                return errorJson('Encounter area not found', 404);
+            }
+        }
 
         if (request()->has('sort')) {
             $encounterAreas->orderBy(request()->input('sort'));
         }
-
-        if ($encounterAreas->isEmpty()) {
-            return errorJson('Encounter area not found', 404);
-        }
-
+        
         return EncounterAreasResource::collection($encounterAreas->get());
     }
 
