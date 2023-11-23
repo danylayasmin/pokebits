@@ -5,22 +5,25 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cache;
 
 class PokemonController extends Controller
 {
     public function index()
     {
-        $client = new Client([
-            'base_uri' => 'https://pokebits.by-a.dev/api/',
-            'timeout' => 120.0,
-        ]);
+        $data = Cache::remember('pokemon_data_frontend', 480, function () {
+            $client = new Client([
+                'base_uri' => 'https://pokebits.by-a.dev/api/',
+                'timeout' => 120.0,
+            ]);
 
-        $response = $client->request('GET', 'pokemon');
+            $response = $client->request('GET', 'pokemon');
 
-        $data = json_decode($response->getBody()->getContents());
+            return json_decode($response->getBody()->getContents())->data;
+        });
 
         return view('home', [
-            'data' => $data->data
+            'data' => $data
     
         ]);
     }
