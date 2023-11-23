@@ -12,13 +12,13 @@ class PokemonController extends Controller
     {
         $client = new Client([
             'base_uri' => 'https://pokebits.by-a.dev/api/',
-            'timeout' => 2.0,
+            'timeout' => 120.0,
         ]);
 
         $response = $client->request('GET', 'pokemon');
 
         $data = json_decode($response->getBody()->getContents());
 
-        dd($data);
+        return view('home', compact('data'));
     }
 }
