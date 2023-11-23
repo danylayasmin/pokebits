@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <title>Pokébit @if(isset($title)) - {{ $title }} @endif</title>
+
+    <link rel="shortcut icon" href="https://i.ibb.co/jzMJMX5/pokebits-OIG-removebg-preview.png" type="image/x-icon">
 </head>
 <body class="flex flex-col min-h-screen bg-gradient-to-r from-red-500 to-yellow-500">
     <div class="min-h-screen">
@@ -17,6 +19,6 @@
         <main>
             {{ $slot }}
         </main>
-    </div>  
+    </div>
 </body>
 </html>
