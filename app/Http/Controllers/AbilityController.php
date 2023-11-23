@@ -35,7 +35,6 @@ class AbilityController extends Controller
 
     public function update(Request $request, Ability $ability)
     {
-        // Validate that the effect is not in use as a Foreign Key in the PokemonAbility table
         $validated = $request->validate([
             'name' => ['required', 'unique:abilities'],
             'effect' => ['nullable'],

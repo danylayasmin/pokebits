@@ -103,7 +103,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('evolution-chain.store');
 
     Route::put(
-        '/evolution-chain/{id}',
+        '/evolution-chain/{evolutionChain}',
         [EvolutionChainController::class, 'update']
     )->name('evolution-chain.update');
 

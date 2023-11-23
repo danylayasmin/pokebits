@@ -35,8 +35,8 @@ class EvolutionChainController extends Controller
     public function update(Request $request, EvolutionChain $evolutionChain)
     {
         $validated = $request->validate([
-            'pokemon_id' => ['required', 'integer'],
-            'evolution_chain' => ['nullable'],
+            'pokemon_id' => ['integer', 'required', 'exists:pokemon,id'],
+            'evolution_chain' => ['required', 'array'],
         ]);
 
         $evolutionChain->update($validated);
