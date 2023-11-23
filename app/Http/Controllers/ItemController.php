@@ -24,26 +24,26 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required'],
             'effect' => ['nullable'],
             'description' => ['nullable'],
             'sprite' => ['nullable'],
         ]);
 
-        return new ItemResource(Item::create($request->validated()));
+        return new ItemResource(Item::create($validated));
     }
 
     public function update(Request $request, Item $item)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required'],
             'effect' => ['nullable'],
             'description' => ['nullable'],
             'sprite' => ['nullable'],
         ]);
 
-        $item->update($request->validated());
+        $item->update($validated);
 
         return new ItemResource($item);
     }

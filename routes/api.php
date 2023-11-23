@@ -38,7 +38,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get('/pokemon/{id}', [PokemonController::class, 'getById'])
         ->where('id', '[0-9]+')
         ->name('pokemon.id');
-    
+
     Route::get('/pokemon/{name}', [PokemonController::class, 'getByName'])
         ->where('name', '[a-zA-Z\-]+')
         ->name('pokemon.name');
@@ -204,19 +204,19 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get('/ability/{name}', [AbilityController::class, 'getByName'])
         ->where('name', '[a-zA-Z\-]+')
         ->name('ability.name');
-    
+
     Route::post(
         '/ability',
         [AbilityController::class, 'store']
     )->name('ability.store');
 
     Route::put(
-        '/ability/{id}',
+        '/ability/{ability}',
         [AbilityController::class, 'update']
     )->name('ability.update');
-    
+
     Route::delete(
-        '/ability/{id}',
+        '/ability/{ability}',
         [AbilityController::class, 'destroy']
     )->name('ability.destroy');
 });
@@ -236,12 +236,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         '/habitat',
         [HabitatController::class, 'store']
     )->name('habitat.store');
-    
+
     Route::put(
         '/habitat/{id}',
         [HabitatController::class, 'update']
     )->name('habitat.update');
-    
+
     Route::delete(
         '/habitat/{id}',
         [HabitatController::class, 'destroy']

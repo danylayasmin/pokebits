@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AbilityResource;
 use App\Models\Ability;
+use App\Models\PokemonAbility;
 use Illuminate\Http\Request;
 
 class AbilityController extends Controller
@@ -24,28 +25,41 @@ class AbilityController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required'],
+        $validated = $request->validate([
+            'name' => ['required', 'unique:abilities'],
             'effect' => ['nullable'],
         ]);
 
-        return new AbilityResource(Ability::create($request->validated()));
+        return new AbilityResource(Ability::create($validated));
     }
 
     public function update(Request $request, Ability $ability)
     {
-        $request->validate([
-            'name' => ['required'],
+        // Validate that the effect is not in use as a Foreign Key in the PokemonAbility table
+        $validated = $request->validate([
+            'name' => ['required', 'unique:abilities'],
             'effect' => ['nullable'],
         ]);
 
-        $ability->update($request->validated());
+        $isInUse = PokemonAbility::where('ability', $ability->name)->first();
+
+        if($isInUse) {
+            return errorJson('Ability is in use and cannot be updated', 409);
+        }
+
+        $ability->update($validated);
 
         return new AbilityResource($ability);
     }
 
     public function destroy(Ability $ability)
     {
+        $isInUse = PokemonAbility::where('ability', $ability->name)->first();
+
+        if($isInUse) {
+            return errorJson('Ability is in use and cannot be deleted', 409);
+        }
+
         $ability->delete();
 
         return response()->json();

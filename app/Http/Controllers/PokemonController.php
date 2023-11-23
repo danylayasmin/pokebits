@@ -33,7 +33,7 @@ class PokemonController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon_id' => ['required', 'integer'],
             'name' => ['required'],
             'sprite_front' => ['required'],
@@ -47,12 +47,12 @@ class PokemonController extends Controller
             'stat_speed' => ['required', 'integer'],
         ]);
 
-        return new PokemonResource(Pokemon::create($request->validated()));
+        return new PokemonResource(Pokemon::create($validated));
     }
 
     public function update(Request $request, Pokemon $pokemon)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon_id' => ['required', 'integer'],
             'name' => ['required'],
             'sprite_front' => ['required'],
@@ -66,7 +66,7 @@ class PokemonController extends Controller
             'stat_speed' => ['required', 'integer'],
         ]);
 
-        $pokemon->update($request->validated());
+        $pokemon->update($validated);
 
         return new PokemonResource($pokemon);
     }

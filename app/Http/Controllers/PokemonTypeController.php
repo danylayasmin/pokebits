@@ -15,12 +15,12 @@ class PokemonTypeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon' => ['required'],
             'type' => ['required'],
         ]);
 
-        return new PokemonTypeResource(PokemonType::create($request->validated()));
+        return new PokemonTypeResource(PokemonType::create($validated));
     }
 
     public function show(PokemonType $pokemonType)
@@ -30,12 +30,12 @@ class PokemonTypeController extends Controller
 
     public function update(Request $request, PokemonType $pokemonType)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon' => ['required'],
             'type' => ['required'],
         ]);
 
-        $pokemonType->update($request->validated());
+        $pokemonType->update($validated);
 
         return new PokemonTypeResource($pokemonType);
     }

@@ -24,7 +24,7 @@ class TypeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required'],
             'double_damage_from' => ['nullable'],
             'double_damage_to' => ['nullable'],
@@ -34,12 +34,12 @@ class TypeController extends Controller
             'no_damage_to' => ['nullable'],
         ]);
 
-        return new TypeResource(Type::create($request->validated()));
+        return new TypeResource(Type::create($validated));
     }
 
     public function update(Request $request, Type $type)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required'],
             'double_damage_from' => ['nullable'],
             'double_damage_to' => ['nullable'],
@@ -49,7 +49,7 @@ class TypeController extends Controller
             'no_damage_to' => ['nullable'],
         ]);
 
-        $type->update($request->validated());
+        $type->update($validated);
 
         return new TypeResource($type);
     }

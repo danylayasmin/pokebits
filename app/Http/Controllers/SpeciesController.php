@@ -24,7 +24,7 @@ class SpeciesController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon_name' => ['required'],
             'description' => ['nullable'],
             'types' => ['required'],
@@ -40,12 +40,12 @@ class SpeciesController extends Controller
             'is_mythical' => ['required'],
         ]);
 
-        return new SpeciesResource(Species::create($request->validated()));
+        return new SpeciesResource(Species::create($validated));
     }
 
     public function update(Request $request, Species $species)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon_name' => ['required'],
             'description' => ['nullable'],
             'types' => ['required'],
@@ -61,7 +61,7 @@ class SpeciesController extends Controller
             'is_mythical' => ['required'],
         ]);
 
-        $species->update($request->validated());
+        $species->update($validated);
 
         return new SpeciesResource($species);
     }

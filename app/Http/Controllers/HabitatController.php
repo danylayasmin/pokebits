@@ -24,20 +24,20 @@ class HabitatController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required'],
         ]);
 
-        return new HabitatResource(Habitat::create($request->validated()));
+        return new HabitatResource(Habitat::create($validated));
     }
 
     public function update(Request $request, Habitat $habitat)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required'],
         ]);
 
-        $habitat->update($request->validated());
+        $habitat->update($validated);
 
         return new HabitatResource($habitat);
     }
