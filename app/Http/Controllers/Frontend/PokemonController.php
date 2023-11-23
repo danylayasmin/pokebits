@@ -19,6 +19,9 @@ class PokemonController extends Controller
 
         $data = json_decode($response->getBody()->getContents());
 
-        return view('home', compact('data'));
+        return view('home', [
+            'data' => $data->data
+    
+        ]);
     }
 }
