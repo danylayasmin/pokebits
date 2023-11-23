@@ -17,6 +17,39 @@ class PokemonController extends Controller
         if ($request->has('name')) {
             $pokemon->where('name', $request->input('name'));
         }
+
+        if ($request->has('hp')) {
+            $pokemon->where('stat_hp', $request->input('hp'));
+        }
+
+        if ($request->has('attack')) {
+            $pokemon->where('stat_attack', $request->input('attack'));
+        }
+
+        if ($request->has('defense')) {
+            $pokemon->where('stat_defense', $request->input('defense'));
+        }
+
+        if ($request->has('special_attack')) {
+            $pokemon->where('stat_special_attack', $request->input('special_attack'));
+        }
+
+        if ($request->has('special_defense')) {
+            $pokemon->where('stat_special_defense', $request->input('special_defense'));
+        }
+
+        if ($request->has('speed')) {
+            $pokemon->where('stat_speed', $request->input('speed'));
+        }
+
+        if ($request->has('height')) {
+            $pokemon->where('generation', $request->input('generation'));
+        }
+
+        if ($request->has('weight')) {
+            $pokemon->where('generation', $request->input('generation'));
+        }
+
         if ($request->has('type')) {
             $pokemon->whereHas('types', function ($query) use ($request) {
                 $query->where('name', $request->input('type'));
