@@ -10,7 +10,13 @@ class TypeController extends Controller
 {
     public function index()
     {
-        return TypeResource::collection(Type::all());
+        $types = Type::query();
+
+        if (request()->has('sort')) {
+            $types->orderBy(request()->input('sort'));
+        }
+
+        return TypeResource::collection($types->get());
     }
 
     public function getByName($name)
