@@ -76,12 +76,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('species.store');
 
     Route::put(
-        '/species/{id}',
+        '/species/{species}',
         [SpeciesController::class, 'update']
     )->name('species.update');
 
     Route::delete(
-        '/species/{id}',
+        '/species/{species}',
         [SpeciesController::class, 'destroy']
     )->name('species.destroy');
 });
