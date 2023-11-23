@@ -52,6 +52,50 @@ class PokemonResource extends JsonResource
             });
         }
 
+        if ($this->relationLoaded('species')) {
+            $array['species'] = $this->species->map(function ($species) {
+                return [
+                    'id' => $species->id,
+                    'name' => $species->name,
+                    'description' => $species->description,
+                    'generation' => $species->generation,
+                    'is_legendary' => $species->is_legendary,
+                    'is_mythical' => $species->is_mythical,
+                ];
+            });
+        }
+
+        if ($this->relationLoaded('encounters')) {
+            $array['encounters'] = $this->encounters->map(function ($encounter) {
+                return [
+                    'id' => $encounter->id,
+                    'location_area' => $encounter->location_area,
+                    'version' => $encounter->version,
+                    'method' => $encounter->method,
+                    'level_min' => $encounter->level_min,
+                    'level_max' => $encounter->level_max,
+                ];
+            });
+        }
+
+        if ($this->relationLoaded('evolution_chain')) {
+            $array['evolution_chain'] = $this->evolution_chain->map(function ($evolution_chain) {
+                return [
+                    'id' => $evolution_chain->id,
+                    'evolution_chain' => $evolution_chain->evolution_chain,
+                ];
+            });
+        }
+
+        if ($this->relationLoaded('habitat')) {
+            $array['habitat'] = $this->habitat->map(function ($habitat) {
+                return [
+                    'id' => $habitat->id,
+                    'name' => $habitat->name,
+                ];
+            });
+        }
+
         return $array;
     }
 }
