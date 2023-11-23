@@ -8,9 +8,37 @@ use Illuminate\Http\Request;
 
 class MoveController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return MoveResource::collection(Move::all());
+        $moves = Move::query();
+
+        if ($request->has('accuracy')) {
+            $moves->where('accuracy', $request->input('accuracy'));
+        }
+
+        if ($request->has('effect_chance')) {
+            $moves->where('effect_chance', $request->input('effect_chance'));
+        }
+
+        if ($request->has('pp')) {
+            $moves->where('pp', $request->input('pp'));
+        }
+
+        if ($request->has('priority')) {
+            $moves->where('priority', $request->input('priority'));
+        }
+
+        if ($request->has('power')) {
+            $moves->where('power', $request->input('power'));
+        }
+
+        if ($request->has('type')) {
+            $moves->where('type', $request->input('type'));
+        }
+
+        $response = $moves->get();
+
+        return MoveResource::collection($response);
     }
 
     public function getByName($name)
