@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Type extends Model
@@ -25,4 +26,9 @@ class Type extends Model
         'no_damage_from' => 'array',
         'no_damage_to' => 'array',
     ];
+
+    public function pokemon(): BelongsToMany
+    {
+        return $this->belongsToMany(Pokemon::class, 'pokemon_types', 'type', 'pokemon', 'name', 'name');
+    }
 }
