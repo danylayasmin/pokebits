@@ -29,9 +29,9 @@ class PokemonController extends Controller
             });
         }
 
-        $res = $pokemon->get();
+        $response = $pokemon->get();
 
-        return PokemonResource::collection($res);
+        return PokemonResource::collection($response);
     }
 
     public function getById($id)
