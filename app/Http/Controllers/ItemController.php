@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
+use Exception;
 use Illuminate\Http\Request;
+
+use phpDocumentor\Reflection\Types\Integer;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ItemController extends Controller
 {
@@ -25,7 +30,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'unique:items'],
             'effect' => ['nullable'],
             'description' => ['nullable'],
             'sprite' => ['nullable'],
@@ -34,22 +39,38 @@ class ItemController extends Controller
         return new ItemResource(Item::create($validated));
     }
 
-    public function update(Request $request, Item $item)
+    public function update(Request $request, int $id)
     {
+        $item = Item::find($id);
+
+        if (empty($item)) {
+            return errorJson('Item not found', 404);
+        }
+
         $validated = $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'unique:items,name'],
             'effect' => ['nullable'],
             'description' => ['nullable'],
             'sprite' => ['nullable'],
         ]);
 
-        $item->update($validated);
+        try {
+            $item->update($validated);
+        } catch (Exception $e) {
+            return errorJson($e->getMessage(), 500);
+        }
 
         return new ItemResource($item);
     }
 
-    public function destroy(Item $item)
+    public function destroy(int $id)
     {
+        $item = Item::find($id);
+        
+        if (empty($item)) {
+            return errorJson('Item not found', 404);
+        }
+
         $item->delete();
 
         return response()->json();
