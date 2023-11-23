@@ -16,7 +16,7 @@ class ItemController extends Controller
     public function getByName($name)
     {
         $item = Item::where('name', $name)->get();
-        if (!$item) {
+        if ($item->isEmpty()) {
             return errorJson('Item not found', 404);
         }
         return ItemResource::collection($item);
