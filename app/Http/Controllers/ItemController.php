@@ -10,7 +10,13 @@ class ItemController extends Controller
 {
     public function index()
     {
-        return ItemResource::collection(Item::all());
+        $items = Item::query();
+
+        if (request()->has('sort')) {
+            $items->orderBy(request()->input('sort'));
+        }
+
+        return ItemResource::collection($items->get());
     }
 
     public function getByName($name)
