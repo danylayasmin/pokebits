@@ -79,33 +79,44 @@ Denk je dat je ergens tegenaan gaat lopen vandaag?
 
 ## Danyla Huntjens
 Waar heb je gister aan gewerkt?
-
+- api routes afgemaakt
+- error-functie, wanneer geen response
+- begin checken van de show-functies
+- begin error-functie toevoegen aan de show-functies
 
 Waar ga je vandaag aan werken?
-
+- verder aan checken show-functies
+- verder aan toevoegen error-functie
+- frontend (om mogelijkheden voor gebruik api te laten zien)
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- nee
 
 ## Martijn Kerpentier
 Waar heb je gister aan gewerkt?
-
+- caching gemaakt + getest + gefixt
+- begin filteren mbv Rico
 
 Waar ga je vandaag aan werken?
-
+- filteren afmaken
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- uitvogelen hoe het precies werkt
 
 ## Rico van Zelst
 Waar heb je gister aan gewerkt?
-
+- bugfix data
+- readme-doc geüpdatet
+- openapi-spec gemaakt
+- geholpen met filteren
 
 Waar ga je vandaag aan werken?
-
+- test-route rate limiting (voor presentatie)
+- test-route caching (voor presentatie)
+- api-resources aanpassen voor volledige data
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- test-route caching
 
 
 # **Dag 5**
