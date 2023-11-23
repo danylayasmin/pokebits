@@ -15,7 +15,11 @@ class MoveController extends Controller
 
     public function getByName($name)
     {
-        return MoveResource::collection(Move::where('name', $name)->get());
+        $move = Move::where('name', $name)->get();
+        if (!$move) {
+            return errorJson('Move not found', 404);
+        }
+        return MoveResource::collection($move);
     }
 
     public function store(Request $request)
