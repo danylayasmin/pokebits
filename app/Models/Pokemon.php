@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use App\Models\EvolutionChain;
 
 class Pokemon extends Model
 {
@@ -28,37 +29,66 @@ class Pokemon extends Model
 
     public function types(): BelongsToMany
     {
-        return $this->belongsToMany(Type::class,
-            'pokemon_types', 'pokemon', 'type', 'name', 'name');
+        return $this->belongsToMany(
+            Type::class,
+            'pokemon_types',
+            'pokemon',
+            'type',
+            'name',
+            'name'
+        );
     }
 
     public function abilities(): BelongsToMany
     {
-        return $this->belongsToMany(Ability::class,
-            'pokemon_abilities', 'pokemon', 'ability', 'name', 'name');
+        return $this->belongsToMany(
+            Ability::class,
+            'pokemon_abilities',
+            'pokemon',
+            'ability',
+            'name',
+            'name'
+        );
     }
 
     public function species(): HasMany
     {
-        return $this->hasMany(Species::class,
-            'pokemon_name', 'name');
+        return $this->hasMany(
+            Species::class,
+            'pokemon_name',
+            'name'
+        );
     }
 
     public function encounters(): HasMany
     {
-        return $this->hasMany(EncounterAreas::class,
-            'pokemon_name', 'name');
+        return $this->hasMany(
+            EncounterAreas::class,
+            'pokemon_name',
+            'name'
+        );
     }
 
-    public function evolution_chain(): HasOne
+    public function getEvolutionChain()
     {
-        return $this->hasOne(EvolutionChain::class)
-            ->whereJsonContains('evolution_chain', $this->name);
+        $evolutionChain = EvolutionChain::whereJsonContains('evolution_chain', $this->name)->first();
+
+        if ($evolutionChain) {
+            return $evolutionChain->evolution_chain;
+        }
+
+        return null;
     }
 
     public function habitat(): HasOneThrough
     {
-        return $this->hasOneThrough(Habitat::class, Species::class,
-            'pokemon_name', 'name', 'name', 'habitat');
+        return $this->hasOneThrough(
+            Habitat::class,
+            Species::class,
+            'pokemon_name',
+            'name',
+            'name',
+            'habitat'
+        );
     }
 }
