@@ -15,7 +15,6 @@ class PokemonController extends Controller
             ->with('abilities')
             ->with('species')
             ->with('encounters')
-            ->with('evolution_chain')
             ->with('habitat');
 
         if ($request->has('name')) {
@@ -75,12 +74,6 @@ class PokemonController extends Controller
         if ($request->has('encounter')) {
             $pokemon->whereHas('encounters', function ($query) use ($request) {
                 $query->where('name', $request->input('encounter'));
-            });
-        }
-
-        if ($request->has('evolution_chain')) {
-            $pokemon->whereHas('evolution_chain', function ($query) use ($request) {
-                $query->where('name', $request->input('evolution_chain'));
             });
         }
 
