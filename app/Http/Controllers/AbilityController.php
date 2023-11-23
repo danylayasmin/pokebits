@@ -60,6 +60,10 @@ class AbilityController extends Controller
             return errorJson('Ability is in use and cannot be deleted', 409);
         }
 
+        if(!$ability) {
+            return errorJson('Ability not found', 404);
+        }
+
         $ability->delete();
 
         return response()->json();

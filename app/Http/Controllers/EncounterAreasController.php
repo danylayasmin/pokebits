@@ -25,12 +25,13 @@ class EncounterAreasController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'area_id' => ['required', 'integer'],
-            'area_name' => ['required'],
-            'pokemon_name' => ['required'],
+            'area_id' => ['required', 'integer', 'unique:encounter_areas'],
+            'area_name' => ['required', 'unique:encounter_areas'],
+            'pokemon_name' => ['required', 'exists:pokemon,name'],
             'method' => ['nullable'],
             'chance' => ['nullable', 'integer'],
         ]);
+
 
         return new EncounterAreasResource(EncounterAreas::create($validated));
     }
@@ -38,9 +39,9 @@ class EncounterAreasController extends Controller
     public function update(Request $request, EncounterAreas $encounterAreas)
     {
         $validated = $request->validate([
-            'area_id' => ['required', 'integer'],
+            'area_id' => ['required', 'integer', 'unique:encounter_areas'],
             'area_name' => ['required'],
-            'pokemon_name' => ['required'],
+            'pokemon_name' => ['required', 'exists:pokemon,name'],
             'method' => ['nullable'],
             'chance' => ['nullable', 'integer'],
         ]);

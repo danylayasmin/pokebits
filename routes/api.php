@@ -130,12 +130,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function (){
     )->name('encounter-area.store');
 
     Route::put(
-        '/encounter-area/{id}',
+        '/encounter-area/{encounterAreas}',
         [EncounterAreasController::class, 'update']
     )->name('encounter-area.update');
 
     Route::delete(
-        '/encounter-area/{id}',
+        '/encounter-area/{encounterAreas}',
         [EncounterAreasController::class, 'destroy']
     )->name('encounter-area.destroy');
 });
