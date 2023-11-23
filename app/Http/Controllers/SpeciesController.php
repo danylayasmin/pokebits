@@ -47,6 +47,10 @@ class SpeciesController extends Controller
         if ($request->has('mythical')) {
             $species->where('is_mythical', $request->input('mythical'));
         }
+
+        if ($request->has('sort')) {
+            $species->orderBy($request->input('sort'));
+        }
         
         return SpeciesResource::collection($species->get());
     }

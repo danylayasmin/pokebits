@@ -24,6 +24,10 @@ class EncounterAreasController extends Controller
             $encounterAreas->where('chance', $request->input('chance'));
         }
 
+        if ($request->has('sort')) {
+            $encounterAreas->orderBy($request->input('sort'));
+        }
+
         $response = $encounterAreas->get();
 
         return EncounterAreasResource::collection($response);
@@ -31,11 +35,20 @@ class EncounterAreasController extends Controller
 
     public function getByName($name)
     {
-        $encounterAreas = EncounterAreas::where('area_name', $name)->get();
-        if ($encounterAreas->isEmpty()) {
-            return errorJson('Encounter area not found', 404);
+        $encounterAreas = EncounterAreas::where('area_name', $name);
+
+        if  (!$encounterAreas) {
+            $encounterAreas->get();
+            if ($encounterAreas->isEmpty()) {
+                return errorJson('Encounter area not found', 404);
+            }
         }
-        return EncounterAreasResource::collection($encounterAreas);
+
+        if (request()->has('sort')) {
+            $encounterAreas->orderBy(request()->input('sort'));
+        }
+        
+        return EncounterAreasResource::collection($encounterAreas->get());
     }
 
     public function store(Request $request)

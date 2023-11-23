@@ -11,7 +11,13 @@ class AbilityController extends Controller
 {
     public function index()
     {
-        return AbilityResource::collection(Ability::all());
+        $abilties = Ability::query();
+
+        if (request()->has('sort')) {
+            $abilties->orderBy(request()->input('sort'));
+        }
+
+        return AbilityResource::collection($abilties->get());
     }
 
     public function getByName($name)

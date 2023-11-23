@@ -10,7 +10,13 @@ class EvolutionChainController extends Controller
 {
     public function index()
     {
-        return EvolutionChainResource::collection(EvolutionChain::all());
+        $evolutionChains = EvolutionChain::query();
+
+        if (request()->has('sort')) {
+            $evolutionChains->orderBy(request()->input('sort'));
+        }
+
+        return EvolutionChainResource::collection($evolutionChains->get());
     }
 
     public function getById($id)

@@ -36,6 +36,10 @@ class MoveController extends Controller
             $moves->where('type', $request->input('type'));
         }
 
+        if ($request->has('sort')) {
+            $moves->orderBy($request->input('sort'));
+        }
+
         $response = $moves->get();
 
         return MoveResource::collection($response);

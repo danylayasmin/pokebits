@@ -78,6 +78,10 @@ class PokemonController extends Controller
             });
         }
 
+        if ($request->has('sort')) {
+            $pokemon->orderBy($request->input('sort'));
+        }
+
         $response = $pokemon->get();
 
         return PokemonResource::collection($response);
