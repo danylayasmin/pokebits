@@ -16,7 +16,7 @@ class MoveController extends Controller
     public function getByName($name)
     {
         $move = Move::where('name', $name)->get();
-        if (!$move) {
+        if ($move->isEmpty()) {
             return errorJson('Move not found', 404);
         }
         return MoveResource::collection($move);
