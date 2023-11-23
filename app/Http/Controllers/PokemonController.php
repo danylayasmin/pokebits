@@ -15,12 +15,20 @@ class PokemonController extends Controller
 
     public function getById($id)
     {
-        return new PokemonResource(Pokemon::find($id));
+        $pokemon = Pokemon::find($id);
+        if (!$pokemon) {
+            return errorJson('Pokemon not found', 404);
+        }
+        return new PokemonResource($pokemon);
     }
 
     public function getByName($name)
     {
-        return new PokemonResource(Pokemon::where('name', $name)->first());
+        $pokemon = Pokemon::where('name', $name)->get();
+        if ($pokemon->isEmpty()) {
+            return errorJson('Pokemon not found', 404);
+        }
+        return PokemonResource::collection($pokemon);
     }
 
     public function store(Request $request)
