@@ -202,7 +202,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('ability.index');
 
     Route::get('/ability/{name}', [AbilityController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('ability.name');
     
     Route::post(
