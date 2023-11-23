@@ -49,12 +49,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('pokemon.store');
 
     Route::put(
-        '/pokemon/{id}',
+        '/pokemon/{pokemon}',
         [PokemonController::class, 'update']
     )->name('pokemon.update');
 
     Route::delete(
-        '/pokemon/{id}',
+        '/pokemon/{pokemon}',
         [PokemonController::class, 'destroy']
     )->name('pokemon.destroy');
 });
