@@ -15,7 +15,11 @@ class HabitatController extends Controller
 
     public function getByName($name)
     {
-        return HabitatResource::collection(Habitat::where('name', $name)->get());
+        $habitat = Habitat::where('name', $name)->get();
+        if (!$habitat) {
+            return errorJson('Habitat not found', 404);
+        }
+        return HabitatResource::collection($habitat);
     }
 
     public function store(Request $request)
