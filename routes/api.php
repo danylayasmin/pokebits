@@ -274,3 +274,8 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [TypeController::class, 'destroy']
     )->name('type.destroy');
 });
+
+//rate limit test
+Route::get('/test-ratelimit', function () {
+    return response()->json(['message' => 'This is a page for testing rate limit']);
+})->middleware('throttle:2,1');

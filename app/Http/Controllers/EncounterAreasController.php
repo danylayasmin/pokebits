@@ -8,9 +8,25 @@ use Illuminate\Http\Request;
 
 class EncounterAreasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return EncounterAreasResource::collection(EncounterAreas::all());
+        $encounterAreas = EncounterAreas::query();
+
+        if ($request->has('area')) {
+            $encounterAreas->where('area_name', $request->input('area'));
+        }
+
+        if ($request->has('method')) {
+            $encounterAreas->where('method', $request->input('method'));
+        }
+
+        if ($request->has('chance')) {
+            $encounterAreas->where('chance', $request->input('chance'));
+        }
+
+        $response = $encounterAreas->get();
+
+        return EncounterAreasResource::collection($response);
     }
 
     public function getByName($name)

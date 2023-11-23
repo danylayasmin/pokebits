@@ -10,4 +10,9 @@ class Ability extends Model
         'name',
         'effect',
     ];
+
+    public function pokemon()
+    {
+        return $this->belongsToMany(Pokemon::class, 'pokemon_abilities', 'ability', 'pokemon', 'name', 'name');
+    }
 }

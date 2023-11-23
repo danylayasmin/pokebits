@@ -13,9 +13,74 @@ use Illuminate\Support\Facades\DB;
 
 class PokemonController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return PokemonResource::collection(Pokemon::all());
+        $pokemon = Pokemon::query()
+            ->with('types')
+            ->with('abilities')
+            ->with('species')
+            ->with('encounters')
+            ->with('habitat');
+
+        if ($request->has('hp')) {
+            $pokemon->where('stat_hp', $request->input('hp'));
+        }
+
+        if ($request->has('attack')) {
+            $pokemon->where('stat_attack', $request->input('attack'));
+        }
+
+        if ($request->has('defense')) {
+            $pokemon->where('stat_defense', $request->input('defense'));
+        }
+
+        if ($request->has('special_attack')) {
+            $pokemon->where('stat_special_attack', $request->input('special_attack'));
+        }
+
+        if ($request->has('special_defense')) {
+            $pokemon->where('stat_special_defense', $request->input('special_defense'));
+        }
+
+        if ($request->has('speed')) {
+            $pokemon->where('stat_speed', $request->input('speed'));
+        }
+
+        if ($request->has('height')) {
+            $pokemon->where('generation', $request->input('generation'));
+        }
+
+        if ($request->has('weight')) {
+            $pokemon->where('generation', $request->input('generation'));
+        }
+
+        if ($request->has('type')) {
+            $pokemon->whereHas('types', function ($query) use ($request) {
+                $query->where('name', $request->input('type'));
+            });
+        }
+
+        if ($request->has('ability')) {
+            $pokemon->whereHas('abilities', function ($query) use ($request) {
+                $query->where('name', $request->input('ability'));
+            });
+        }
+
+        if ($request->has('encounter')) {
+            $pokemon->whereHas('encounters', function ($query) use ($request) {
+                $query->where('area_name', $request->input('encounter'));
+            });
+        }
+
+        if ($request->has('habitat')) {
+            $pokemon->whereHas('habitat', function ($query) use ($request) {
+                $query->where('name', $request->input('habitat'));
+            });
+        }
+
+        $response = $pokemon->get();
+
+        return PokemonResource::collection($response);
     }
 
     public function getById($id)
