@@ -265,12 +265,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('type.store');
 
     Route::put(
-        '/type/{id}',
+        '/type/{type}',
         [TypeController::class, 'update']
     )->name('type.update');
 
     Route::delete(
-        '/type/{id}',
+        '/type/{type}',
         [TypeController::class, 'destroy']
     )->name('type.destroy');
 });
