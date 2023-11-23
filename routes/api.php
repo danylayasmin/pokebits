@@ -148,7 +148,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('item.index');
 
     Route::get('/item/{name}', [ItemController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('item.name');
 
     Route::post(
