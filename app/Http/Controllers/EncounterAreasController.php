@@ -19,7 +19,7 @@ class EncounterAreasController extends Controller
         if (!$encounterAreas) {
             return errorJson('Encounter area not found', 404);
         }
-        return new EncounterAreasResource($encounterAreas);
+        return EncounterAreasResource::collection($encounterAreas);
     }
 
     public function store(Request $request)
