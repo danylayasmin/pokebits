@@ -25,13 +25,13 @@ class MoveController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required'],
-            'accuracy' => ['nullable'],
+            'name' => ['required', 'regex:/^[a-zA-Z ]+$/', 'unique:moves'],
+            'accuracy' => ['nullable', 'integer'],
             'effect_chance' => ['nullable', 'integer'],
             'pp' => ['nullable', 'integer'],
             'priority' => ['nullable', 'integer'],
             'power' => ['nullable', 'integer'],
-            'type' => ['required']
+            'type' => ['required', 'exists:types,name']
         ]);
 
         return new MoveResource(Move::create($validated));
@@ -40,13 +40,13 @@ class MoveController extends Controller
     public function update(Request $request, Move $move)
     {
         $validated = $request->validate([
-            'name' => ['required'],
-            'accuracy' => ['nullable'],
+            'name' => ['required', 'regex:/^[a-zA-Z ]+$/', 'unique:moves'],
+            'accuracy' => ['nullable', 'integer'],
             'effect_chance' => ['nullable', 'integer'],
             'pp' => ['nullable', 'integer'],
             'priority' => ['nullable', 'integer'],
             'power' => ['nullable', 'integer'],
-            'type' => ['required']
+            'type' => ['required', 'exists:types,name']
         ]);
 
         $move->update($validated);

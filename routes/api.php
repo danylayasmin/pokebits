@@ -184,12 +184,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('move.store');
 
     Route::put(
-        '/move/{id}',
+        '/move/{move}',
         [MoveController::class, 'update']
     )->name('move.update');
 
     Route::delete(
-        '/move/{id}',
+        '/move/{move}',
         [MoveController::class, 'destroy']
     )->name('move.destroy');
 });
