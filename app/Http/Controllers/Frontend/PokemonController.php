@@ -11,7 +11,7 @@ class PokemonController extends Controller
     public function index()
     {
         $client = new Client([
-            'base_uri' => 'http://127.0.0.1:8001/api/',
+            'base_uri' => 'https://pokebits.by-a.dev/api/',
             'timeout' => 2.0,
         ]);
 
