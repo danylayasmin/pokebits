@@ -38,7 +38,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get('/pokemon/{id}', [PokemonController::class, 'getById'])
         ->where('id', '[0-9]+')
         ->name('pokemon.id');
-    
+
     Route::get('/pokemon/{name}', [PokemonController::class, 'getByName'])
         ->where('name', '[a-zA-Z\-]+')
         ->name('pokemon.name');
@@ -49,12 +49,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('pokemon.store');
 
     Route::put(
-        '/pokemon/{id}',
+        '/pokemon/{pokemon}',
         [PokemonController::class, 'update']
     )->name('pokemon.update');
 
     Route::delete(
-        '/pokemon/{id}',
+        '/pokemon/{pokemon}',
         [PokemonController::class, 'destroy']
     )->name('pokemon.destroy');
 });
@@ -76,12 +76,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('species.store');
 
     Route::put(
-        '/species/{id}',
+        '/species/{species}',
         [SpeciesController::class, 'update']
     )->name('species.update');
 
     Route::delete(
-        '/species/{id}',
+        '/species/{species}',
         [SpeciesController::class, 'destroy']
     )->name('species.destroy');
 });
@@ -103,7 +103,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('evolution-chain.store');
 
     Route::put(
-        '/evolution-chain/{id}',
+        '/evolution-chain/{evolutionChain}',
         [EvolutionChainController::class, 'update']
     )->name('evolution-chain.update');
 
@@ -130,12 +130,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function (){
     )->name('encounter-area.store');
 
     Route::put(
-        '/encounter-area/{id}',
+        '/encounter-area/{encounterAreas}',
         [EncounterAreasController::class, 'update']
     )->name('encounter-area.update');
 
     Route::delete(
-        '/encounter-area/{id}',
+        '/encounter-area/{encounterAreas}',
         [EncounterAreasController::class, 'destroy']
     )->name('encounter-area.destroy');
 });
@@ -184,12 +184,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('move.store');
 
     Route::put(
-        '/move/{id}',
+        '/move/{move}',
         [MoveController::class, 'update']
     )->name('move.update');
 
     Route::delete(
-        '/move/{id}',
+        '/move/{move}',
         [MoveController::class, 'destroy']
     )->name('move.destroy');
 });
@@ -204,19 +204,19 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     Route::get('/ability/{name}', [AbilityController::class, 'getByName'])
         ->where('name', '[a-zA-Z\-]+')
         ->name('ability.name');
-    
+
     Route::post(
         '/ability',
         [AbilityController::class, 'store']
     )->name('ability.store');
 
     Route::put(
-        '/ability/{id}',
+        '/ability/{ability}',
         [AbilityController::class, 'update']
     )->name('ability.update');
-    
+
     Route::delete(
-        '/ability/{id}',
+        '/ability/{ability}',
         [AbilityController::class, 'destroy']
     )->name('ability.destroy');
 });
@@ -236,14 +236,14 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         '/habitat',
         [HabitatController::class, 'store']
     )->name('habitat.store');
-    
+
     Route::put(
-        '/habitat/{id}',
+        '/habitat/{habitat}',
         [HabitatController::class, 'update']
     )->name('habitat.update');
-    
+
     Route::delete(
-        '/habitat/{id}',
+        '/habitat/{habitat}',
         [HabitatController::class, 'destroy']
     )->name('habitat.destroy');
 });
@@ -265,12 +265,12 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('type.store');
 
     Route::put(
-        '/type/{id}',
+        '/type/{type}',
         [TypeController::class, 'update']
     )->name('type.update');
 
     Route::delete(
-        '/type/{id}',
+        '/type/{type}',
         [TypeController::class, 'destroy']
     )->name('type.destroy');
 });

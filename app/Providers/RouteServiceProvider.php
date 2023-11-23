@@ -24,16 +24,18 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
-
         RateLimiter::for('pokemon', function (Request $request) {
             return Limit::perMinute(150)->by($request->ip());
         });
 
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(150)->by($request->user()?->id ?: $request->ip());
+        });
+
+
+
         $this->routes(function () {
-            Route::middleware('api')
+            Route::middleware(['throttle:pokemon', 'api'])
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 

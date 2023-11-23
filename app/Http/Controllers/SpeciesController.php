@@ -62,44 +62,42 @@ class SpeciesController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'pokemon_name' => ['required'],
+        $validated = $request->validate([
+            'pokemon_name' => ['required', 'exists:pokemon,name'],
             'description' => ['nullable'],
-            'types' => ['required'],
             'color_name' => ['required'],
             'color_hex' => ['required'],
             'shape' => ['required'],
             'base_happiness' => ['required', 'integer'],
             'capture_rate' => ['required', 'integer'],
-            'habitat' => ['required'],
+            'habitat' => ['required', 'exists:habitats,name'],
             'growth_rate' => ['required', 'integer'],
-            'is_baby' => ['required'],
-            'is_legendary' => ['required'],
-            'is_mythical' => ['required'],
+            'is_baby' => ['required', 'boolean'],
+            'is_legendary' => ['required', 'boolean'],
+            'is_mythical' => ['required', 'boolean'],
         ]);
 
-        return new SpeciesResource(Species::create($request->validated()));
+        return new SpeciesResource(Species::create($validated));
     }
 
     public function update(Request $request, Species $species)
     {
-        $request->validate([
-            'pokemon_name' => ['required'],
+        $validated = $request->validate([
+            'pokemon_name' => ['required', 'exists:pokemon,name'],
             'description' => ['nullable'],
-            'types' => ['required'],
             'color_name' => ['required'],
             'color_hex' => ['required'],
             'shape' => ['required'],
             'base_happiness' => ['required', 'integer'],
             'capture_rate' => ['required', 'integer'],
-            'habitat' => ['required'],
+            'habitat' => ['required', 'exists:habitats,name'],
             'growth_rate' => ['required', 'integer'],
-            'is_baby' => ['required'],
-            'is_legendary' => ['required'],
-            'is_mythical' => ['required'],
+            'is_baby' => ['required', 'boolean'],
+            'is_legendary' => ['required', 'boolean'],
+            'is_mythical' => ['required', 'boolean'],
         ]);
 
-        $species->update($request->validated());
+        $species->update($validated);
 
         return new SpeciesResource($species);
     }

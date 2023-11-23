@@ -15,12 +15,12 @@ class PokemonAbilityController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon' => ['required'],
             'ability' => ['required'],
         ]);
 
-        return new PokemonAbilityResource(PokemonAbility::create($request->validated()));
+        return new PokemonAbilityResource(PokemonAbility::create($validated));
     }
 
     public function show(PokemonAbility $pokemonAbility)
@@ -30,12 +30,12 @@ class PokemonAbilityController extends Controller
 
     public function update(Request $request, PokemonAbility $pokemonAbility)
     {
-        $request->validate([
+        $validated = $request->validate([
             'pokemon' => ['required'],
             'ability' => ['required'],
         ]);
 
-        $pokemonAbility->update($request->validated());
+        $pokemonAbility->update($validated);
 
         return new PokemonAbilityResource($pokemonAbility);
     }

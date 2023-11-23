@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HabitatResource;
 use App\Models\Habitat;
+use App\Models\Species;
 use Illuminate\Http\Request;
 
 class HabitatController extends Controller
@@ -24,26 +25,38 @@ class HabitatController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required'],
+        $validated = $request->validate([
+            'name' => ['required', 'unique:habitats'],
         ]);
 
-        return new HabitatResource(Habitat::create($request->validated()));
+        return new HabitatResource(Habitat::create($validated));
     }
 
     public function update(Request $request, Habitat $habitat)
     {
-        $request->validate([
-            'name' => ['required'],
+        $validated = $request->validate([
+            'name' => ['required', 'unique:habitats'],
         ]);
 
-        $habitat->update($request->validated());
+        $isInUse = Species::where('habitat', $habitat->name)->first();
+
+        if ($isInUse) {
+            return errorJson('Habitat is in use and cannot be updated', 409);
+        }
+
+        $habitat->update($validated);
 
         return new HabitatResource($habitat);
     }
 
     public function destroy(Habitat $habitat)
     {
+        $isInUse = Species::where('habitat', $habitat->name)->first();
+
+        if ($isInUse) {
+            return errorJson('Habitat is in use and cannot be deleted', 409);
+        }
+
         $habitat->delete();
 
         return response()->json();
