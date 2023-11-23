@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PokemonController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\PokemonController as FrontendPokemonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get(
+    '/',
+   [FrontendPokemonController::class, 'index']
+)->name('home');
