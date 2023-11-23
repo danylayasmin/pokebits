@@ -73,7 +73,7 @@ class PokemonController extends Controller
 
         if ($request->has('encounter')) {
             $pokemon->whereHas('encounters', function ($query) use ($request) {
-                $query->where('name', $request->input('encounter'));
+                $query->where('area_name', $request->input('encounter'));
             });
         }
 
