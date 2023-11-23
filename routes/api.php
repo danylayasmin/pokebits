@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\EvolutionChainController;
-use App\Http\Controllers\EncounterAreaController;
+use App\Http\Controllers\EncounterAreasController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MoveController;
 use App\Http\Controllers\AbilityController;
@@ -40,7 +40,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         ->name('pokemon.id');
     
     Route::get('/pokemon/{name}', [PokemonController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('pokemon.name');
 
     Route::post(
@@ -67,7 +67,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('species.index');
 
     Route::get('/species/{name}', [SpeciesController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('species.name');
 
     Route::post(
@@ -93,8 +93,8 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
         [EvolutionChainController::class, 'index']
     )->name('evolution-chain.index');
 
-    Route::get('/evolution-chain/{pokemon_id}', [EvolutionChainController::class, 'getById'])
-        ->where('pokemon_id', '[0-9]+')
+    Route::get('/evolution-chain/{id}', [EvolutionChainController::class, 'getById'])
+        ->where('id', '[0-9]+')
         ->name('evolution-chain.id');
 
     Route::post(
@@ -117,26 +117,26 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
 Route::middleware(['throttle:pokemon', 'cache'])->group(function (){
     Route::get(
         '/encounter-area',
-        [EncounterAreaController::class, 'index']
+        [EncounterAreasController::class, 'index']
     )->name('encounter-area.index');
 
-    Route::get('/encounter-area/{name}', [EncounterAreaController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+    Route::get('/encounter-area/{area_name}', [EncounterAreasController::class, 'getByName'])
+        ->where('area_name', '[a-zA-Z\-]+')
         ->name('encounter-area.name');
 
     Route::post(
         '/encounter-area',
-        [EncounterAreaController::class, 'store']
+        [EncounterAreasController::class, 'store']
     )->name('encounter-area.store');
 
     Route::put(
         '/encounter-area/{id}',
-        [EncounterAreaController::class, 'update']
+        [EncounterAreasController::class, 'update']
     )->name('encounter-area.update');
 
     Route::delete(
         '/encounter-area/{id}',
-        [EncounterAreaController::class, 'destroy']
+        [EncounterAreasController::class, 'destroy']
     )->name('encounter-area.destroy');
 });
 
@@ -148,7 +148,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('item.index');
 
     Route::get('/item/{name}', [ItemController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('item.name');
 
     Route::post(
@@ -175,7 +175,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('move.index');
 
     Route::get('/move/{name}', [MoveController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('move.name');
 
     Route::post(
@@ -202,7 +202,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('ability.index');
 
     Route::get('/ability/{name}', [AbilityController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('ability.name');
     
     Route::post(
@@ -229,7 +229,7 @@ Route::middleware(['throttle:pokemon', 'cache'])->group(function () {
     )->name('habitat.index');
 
     Route::get('/habitat/{name}', [HabitatController::class, 'getByName'])
-        ->where('name', '[a-zA-Z]+')
+        ->where('name', '[a-zA-Z\-]+')
         ->name('habitat.name');
 
     Route::post(

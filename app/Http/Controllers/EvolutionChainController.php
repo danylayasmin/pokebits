@@ -15,7 +15,11 @@ class EvolutionChainController extends Controller
 
     public function getById($id)
     {
-        return new EvolutionChainResource(EvolutionChain::where('pokemon_id', $id)->first());
+        $evolutionChain = EvolutionChain::where('id', $id)->first();
+        if (!$evolutionChain) {
+            return errorJson('Evolution chain not found', 404);
+        }
+        return new EvolutionChainResource($evolutionChain);
     }
 
     public function store(Request $request)

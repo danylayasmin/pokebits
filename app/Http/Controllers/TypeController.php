@@ -15,7 +15,11 @@ class TypeController extends Controller
 
     public function getByName($name)
     {
-        return TypeResource::collection(Type::where('name', $name)->get());
+        $type = Type::where('name', $name)->first();
+        if (!$type) {
+            return errorJson('Type not found', 404);
+        }
+        return new TypeResource($type);
     }
 
     public function store(Request $request)
