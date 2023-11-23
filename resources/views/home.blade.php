@@ -5,9 +5,9 @@
     <div class="items-center h-screen">
         <div class="py-12">
             <div
-                class="min-h-screen items-center justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
+                class="min-h-screen items-center justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 lg:mx-36">
                 @foreach ($data as $i => $poke)
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg ">
                         <div class="p-4">
                             <img src="https://cdn.statically.io/img/raw.githubusercontent.com/w=128,f=auto/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ $poke->pokemon_id }}.png"
                                  loading="{{ $i < 15 ? 'eager' : 'lazy' }}" alt="Pokemon" class="mx-auto w-32"
