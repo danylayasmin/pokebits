@@ -60,8 +60,8 @@ class PokemonController extends Controller
     public function update(Request $request, Pokemon $pokemon)
     {
         $validated = $request->validate([
-            'pokemon_id' => ['required', 'integer', 'unique:pokemon'],
-            'name' => ['required', 'unique:pokemon'],
+            'pokemon_id' => ['required', 'integer', 'unique:pokemon,pokemon_id'],
+            'name' => ['required', 'unique:pokemon,name'],
             'sprite_front' => ['required'],
             'sprite_back' => ['required'],
             'artwork' => ['required'],
@@ -76,7 +76,7 @@ class PokemonController extends Controller
         ]);
 
         $isInUse = false;
-        if (PokemonType::where('pokemon', $pokemon->name)->exists() || PokemonAbility::where('pokemon', $pokemon->name)->exists() || EncounterAreas::where('pokemon', $pokemon->name)->exists() || Species::where('pokemon_name', $pokemon->name)->exists()){
+        if (PokemonType::where('pokemon', $pokemon->name)->exists() || PokemonAbility::where('pokemon', $pokemon->name)->exists()| Species::where('pokemon_name', $pokemon->name)->exists()){
             $isInUse = true;
         }
 
@@ -92,7 +92,7 @@ class PokemonController extends Controller
     public function destroy(Pokemon $pokemon)
     {
         $isInUse = false;
-        if (PokemonType::where('pokemon', $pokemon->name)->exists() || PokemonAbility::where('pokemon', $pokemon->name)->exists() || EncounterAreas::where('pokemon', $pokemon->name)->exists() || Species::where('pokemon_name', $pokemon->name)->exists()){
+        if (PokemonType::where('pokemon', $pokemon->name)->exists() || PokemonAbility::where('pokemon', $pokemon->name)->exists() || Species::where('pokemon_name', $pokemon->name)->exists()){
             $isInUse = true;
         }
         if ($isInUse) {

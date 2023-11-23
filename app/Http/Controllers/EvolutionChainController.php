@@ -25,8 +25,8 @@ class EvolutionChainController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'pokemon_id' => ['required', 'integer'],
-            'evolution_chain' => ['nullable'],
+            'pokemon_id' => ['required', 'integer', 'exists:pokemon,id'],
+            'evolution_chain' => ['nullable', 'array'],
         ]);
 
         return new EvolutionChainResource(EvolutionChain::create($validated));

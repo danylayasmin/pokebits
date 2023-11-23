@@ -76,7 +76,7 @@ class TypeController extends Controller
         if ($isInUse) {
             return errorJson('Type is in use and cannot be deleted', 409);
         }
-        
+
         $type->delete();
 
         return response()->json();
