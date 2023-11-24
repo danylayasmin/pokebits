@@ -97,6 +97,17 @@ Populating from the dump is recommended as it is much faster.
 ```bash
   php artisan serve
 ```
+And visit the following link:
+[http://127.0.0.1:8000/api/pokemon](http://127.0.0.1:8000/api/pokemon)
+
+8. Optional:
+If you want to see an example page for the Pokédex, run Vite
+
+```bash
+  npm run dev
+```
+And visit the following link:
+[http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## ❓ F.A.Q.
 
