@@ -143,7 +143,7 @@ With multiple filters, type '&' between each filter: "localhost:8000/api/pokemon
 Answer: When wanting to sort, type the sorting field in the search bar, next to the url.
 "localhost:8000/api/pokemon?sort=name".
 
-This is not possible for more the one sort, you can sort filtered responses. But only one sort can be applied per response.
+It is not possible to sort in more than one way.
 </details>
 
 ## 📚 Examples
