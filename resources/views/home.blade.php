@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Pokedex
+        Pokédex
     </x-slot>
     <div class="items-center h-screen">
         <div class="py-12">
