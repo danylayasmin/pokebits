@@ -130,6 +130,22 @@ Answer: To populate the database, it calls the process "mysql" from the command 
 Answer: When populating the database using the PokeAPI commands, it takes a while. This is because it'll make a bunch of requests to PokeAPI to request the information and inserts it. The dump option is much faster and the dump is updated every game release, so it'll be up-to-date.
 </details>
 
+<details><summary>Question: I want to filter my data on specific requirements: "The attack of a pokemon is equal to 48"</summary>
+
+Answer: When wanting to filter, type the applied filters in the search bar, next to the url.
+"localhost:8000/api/pokemon?attack=48".
+
+With multiple filters, type '&' between each filter: "localhost:8000/api/pokemon?attack=48&height=5".
+</details>
+
+<details><summary>Question: I want to sort my data on name, or other fields</summary>
+
+Answer: When wanting to sort, type the sorting field in the search bar, next to the url.
+"localhost:8000/api/pokemon?sort=name".
+
+It is not possible to sort in more than one way.
+</details>
+
 ## 📚 Examples
 <details>
 <summary>Vanilla JavaScript</summary>

@@ -47,11 +47,11 @@ class PokemonController extends Controller
         }
 
         if ($request->has('height')) {
-            $pokemon->where('generation', $request->input('generation'));
+            $pokemon->where('height', $request->input('height'));
         }
 
         if ($request->has('weight')) {
-            $pokemon->where('generation', $request->input('generation'));
+            $pokemon->where('weight', $request->input('weight'));
         }
 
         if ($request->has('type')) {
