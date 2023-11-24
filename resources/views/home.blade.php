@@ -9,7 +9,7 @@
                 @foreach ($data as $i => $poke)
                     <div class="bg-white rounded-3xl overflow-hidden shadow-lg h-96">
                         <div class="p-4">
-                            <img src="https://cdn.statically.io/img/raw.githubusercontent.com/w=128,f=auto/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ $poke->pokemon_id }}.png"
+                            <img src="https://cdn.statically.io/gh/pokeapi/sprites/master/sprites/pokemon/other/official-artwork/{{ $poke->pokemon_id }}.png"
                                  loading="{{ $i < 15 ? 'eager' : 'lazy' }}" alt="Pokemon" class="mx-auto w-32"
                                 onerror="this.onerror=null; this.src='https://s6.imgcdn.dev/Rmgjd.png';">
                             <h3 class="text-xl font-semibold text-center mt-4 capitalize">{{ $poke->name }}</h3>
