@@ -123,29 +123,40 @@ Denk je dat je ergens tegenaan gaat lopen vandaag?
 
 ## Danyla Huntjens
 Waar heb je gister aan gewerkt?
-
+- show-functies gecheckt
+- alle error-functies toegevoegd, bug gefixt
+- rate limiting test-route gemaakt
+- frontend pokedex gemaakt
 
 Waar ga je vandaag aan werken?
-
+- final touches
+- voorbereiden presentatie
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- nee
 
 ## Martijn Kerpentier
 Waar heb je gister aan gewerkt?
-
+- filteren afgemaakt
+- sorteren gemaakt
+- resources geüpdatet, relaties erbij
 
 Waar ga je vandaag aan werken?
-
+- final touches
+- voorbereiden presentatie
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
-
+- nee
 
 ## Rico van Zelst
 Waar heb je gister aan gewerkt?
-
+- alle updates en deletes gemaakt
+- website gedeployed
+- rate-limit voor api werkend gemaakt
 
 Waar ga je vandaag aan werken?
-
+- final touches
+- voorbereiden presentatie
 
 Denk je dat je ergens tegenaan gaat lopen vandaag?
+- nee
