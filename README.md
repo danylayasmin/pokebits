@@ -135,7 +135,15 @@ Answer: When populating the database using the PokeAPI commands, it takes a whil
 Answer: When wanting to filter, type the applied filters in the search bar, next to the url.
 "localhost:8000/api/pokemon?attack=48".
 
-With multiple filters, type '&' between each filter: "localhost:8000/api/pokemon?attack=48&height=5"
+With multiple filters, type '&' between each filter: "localhost:8000/api/pokemon?attack=48&height=5".
+</details>
+
+<details><summary>Question: I want to sort my data on name, or other fields</summary>
+
+Answer: When wanting to sort, type the sorting field in the search bar, next to the url.
+"localhost:8000/api/pokemon?sort=name".
+
+This is not possible for more the one sort, you can sort filtered responses. But only one sort can be applied per response.
 </details>
 
 ## 📚 Examples
