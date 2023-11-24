@@ -119,18 +119,18 @@ Answer: Don't worry. The rate limit isn't permanent. Please wait a few minutes a
 </details>
 
 <details>
-<summary>Question: When populating the DB with `dump` I get "'mysql' is not recognized as an internal or external command"</summary>
+<summary>Question: Why do I get "'mysql' is not recognized as an internal or external command" when populating the DB with `dump`?</summary>
 
 Answer: To populate the database, it calls the process "mysql" from the command line. If you have MySQL installed but you still get this error, it means it's not added to path. To add it, find the location of `mysql.exe` and add it to path [guide here ](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/).
 </details>
 
 <details>
-<summary>Question: When populating the DB through PokeAPI it takes a while</summary>
+<summary>Question: Why does populating the DB through PokeAPI take a while?</summary>
 
 Answer: When populating the database using the PokeAPI commands, it takes a while. This is because it'll make a bunch of requests to PokeAPI to request the information and inserts it. The dump option is much faster and the dump is updated every game release, so it'll be up-to-date.
 </details>
 
-<details><summary>Question: I want to filter my data on specific requirements: "The attack of a pokemon is equal to 48"</summary>
+<details><summary>Question: How do I filter my data on specific requirements? - "The attack of a pokemon is equal to 48"</summary>
 
 Answer: When wanting to filter, type the applied filters in the search bar, next to the url.
 "localhost:8000/api/pokemon?attack=48".
@@ -138,7 +138,7 @@ Answer: When wanting to filter, type the applied filters in the search bar, next
 With multiple filters, type '&' between each filter: "localhost:8000/api/pokemon?attack=48&height=5".
 </details>
 
-<details><summary>Question: I want to sort my data on name, or other fields</summary>
+<details><summary>Question: How do I sort my data on name, or other fields?</summary>
 
 Answer: When wanting to sort, type the sorting field in the search bar, next to the url.
 "localhost:8000/api/pokemon?sort=name".
