@@ -89,7 +89,13 @@ class PokemonController extends Controller
 
     public function getById($id)
     {
-        $pokemon = Pokemon::find($id);
+        $pokemon = Pokemon::where('id', $id)
+            ->with('types')
+            ->with('abilities')
+            ->with('species')
+            ->with('encounters')
+            ->with('habitat')
+            ->first();
         if (!$pokemon) {
             return errorJson('Pokemon not found', 404);
         }
@@ -98,11 +104,18 @@ class PokemonController extends Controller
 
     public function getByName($name)
     {
-        $pokemon = Pokemon::where('name', $name)->get();
+        $pokemon = Pokemon::where('name', $name)
+            ->with('types')
+            ->with('abilities')
+            ->with('species')
+            ->with('encounters')
+            ->with('habitat')
+            ->get();
         if ($pokemon->isEmpty()) {
             return errorJson('Pokemon not found', 404);
         }
         return PokemonResource::collection($pokemon);
+
     }
 
     public function store(Request $request)
