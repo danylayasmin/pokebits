@@ -133,7 +133,7 @@ Answer: When populating the database using the PokeAPI commands, it takes a whil
 <details><summary>Question: I want to filter my data on specific requirements: "The attack of a pokemon is equal to 48"</summary>
 
 Answer: When wanting to filter, type the applied filters in the search bar, next to the url.
-"localhost:8000/api/pokemon?stat_attack=48".
+"localhost:8000/api/pokemon?attack=48".
 
 With multiple filters, type '&' between each filter: "localhost:8000/api/pokemon?attack=48&height=5"
 </details>
