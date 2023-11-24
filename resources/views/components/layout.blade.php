@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>Pokébit @if(isset($title)) - {{ $title }} @endif</title>
+    <title>Pokébits @if(isset($title)) - {{ $title }} @endif</title>
 
     <link rel="shortcut icon" href="https://i.ibb.co/jzMJMX5/pokebits-OIG-removebg-preview.png" type="image/x-icon">
 </head>
