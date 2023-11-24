@@ -2,7 +2,7 @@
 
 Pokébits is an easy-to-use Pokémon data API with robust filtering, good documentation, and caching. We pull data from PokeAPI, store it ourselves, and handle caching so developers can focus on their front-end. We only provide English responses.
 
-<p align="center"><img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&amp;logo=laravel&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&amp;logo=mysql&amp;logoColor=white" alt="shields"></p>
+<p align="center"><img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&amp;logo=laravel&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/MySQL-00618a?style=for-the-badge&amp;logo=mysql&amp;logoColor=white" alt="shields"></p>
 
 ## 📝 Authors
 

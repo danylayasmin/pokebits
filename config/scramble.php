@@ -83,11 +83,13 @@ Whether you're building gaming apps, educational platforms, or simply exploring 
      * ],
      * ```
      */
-    'servers' => null,
+    'servers' => [
+        'Local' => 'api',
+        'Production' => 'https://pokebits.by-a.dev/api',
+    ],
 
     'middleware' => [
         'web',
-        RestrictedDocsAccess::class,
     ],
 
     'extensions' => [],
