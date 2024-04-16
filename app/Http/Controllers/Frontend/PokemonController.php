@@ -12,8 +12,7 @@ class PokemonController extends Controller
     public function index()
     {
         $data = Cache::remember('pokemon_data_frontend', 480, function () {
-            $client = new Client([
-                'base_uri' => 'https://pokebits.by-a.dev/api/',
+            $client = new Client(['base_uri' => 'https://pb.orianna.dev/api/',
                 'timeout' => 120.0,
             ]);
 
@@ -24,7 +23,7 @@ class PokemonController extends Controller
 
         return view('home', [
             'data' => $data
-    
+
         ]);
     }
 }

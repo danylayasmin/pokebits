@@ -85,7 +85,7 @@ Whether you're building gaming apps, educational platforms, or simply exploring 
      */
     'servers' => [
         'Local' => 'api',
-        'Production' => 'https://pokebits.by-a.dev/api',
+        'Production' => 'https://pb.orianna.dev/api',
     ],
 
     'middleware' => [
